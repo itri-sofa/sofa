@@ -1,0 +1,98 @@
+#!/bin/bash
+#Description:
+#    purpose: test file IO correctness by generating multiple random size file and perform RW
+#             on these files
+#    procedures:
+#input parameters
+#    1st: target raw device
+#    2nd: how many round to test
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+cnt_iter=1
+Num_totalFile=4000
+Sz_aveFile=40
+test_mpoint=/mnt/lfsm_ci_autotest_0123456789
+tool_exec_log=$PATH_LOG/ftest_randsizefileRW_0123456789.log
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+    cnt_iter=1
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    cnt_iter=$2
+else
+    target_dev=lfsm
+    cnt_iter=1
+fi
+
+#########################
+#   start testing       #
+#########################
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev and test round = $cnt_iter"
+
+[ -f $test_log_file ] && rm -f $test_log_file
+
+log_msg "$test_scfn [INFO] format device /dev/$target_dev"
+execute "mke2fs -F /dev/$target_dev"
+
+log_msg "$test_scfn [INFO] create mount point and mount"
+[ -d $test_mpoint ] && rm -rf $test_mpoint
+execute "mkdir $test_mpoint"
+
+for((i=0;i<$cnt_iter;i++))
+do
+    [ -f $tool_exec_log ] && rm -f $tool_exec_log
+    execute "mount /dev/$target_dev $test_mpoint"
+    ti=`date +"%N"`
+    log_msg "$test_scfn: [INFO] mount iter: $i  @  `date` "
+
+    log_msg "$test_scfn: [INFO] write files..."
+    $PATH_TEST_TOOL/filetest w $Num_totalFile $Sz_aveFile $ti $test_mpoint $i >> $tool_exec_log
+    sync
+    echo 3 > /proc/sys/vm/drop_caches
+    sync
+    sync
+
+    log_msg "$test_scfn: [INFO] read files ..."
+    $PATH_TEST_TOOL/filetest r $Num_totalFile $Sz_aveFile $ti $test_mpoint $i >> $tool_exec_log
+    CmdTestR=`grep error $tool_exec_log`
+    if [ "$CmdTestR" ]; then
+        log_msg "$test_scfn: [ERROR] There is error at iter $i time_seed $ti" >> $test_log_file
+        execute "umount ${test_mpoint}"
+        break
+    fi
+
+    execute "umount ${test_mpoint}"
+done
+
+rm -rf $test_mpoint
+
+CmdTestR=`grep error $tool_exec_log`
+if [ "$CmdTestR" ]; then
+    log_msg "$test_scfn: [INFO] test result fail"
+    exit 1
+else
+    log_msg "$test_scfn: [INFO] test result ok"
+fi
+

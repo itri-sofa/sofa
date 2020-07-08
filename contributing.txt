@@ -1,0 +1,42 @@
+Note: We accept contributions to the SOFA project in any form including pulling new
+requests via Github or discussing with us in the SOFA Google group. By contributing 
+codes to the SOFA project, you agree to release your codes under the terms of 
+the Apache license 2.0 that you can find in the COPYING file included in the 
+SOFA source distribution. You will include Apache license 2.0 in the COPYING file
+within each source file that you contribute.
+
+
+# IMPORTANT: How to Use SOFA Github Issues.
+
+* GitHub issues SHOULD only be used to report bugs and feature requests. Please 
+  NOT report questions which Not belong to bugs and feature requests in the 
+  GitHub issue system.
+
+
+# IMPORTANT: How to Use the SOFA Google Group 
+
+* Any questions except bugs and feature requests belong to the SOFA Google Group. 
+  Please feel free to provide us with your feedback and general questions in 
+  this mailing list.
+  
+    https://groups.google.com/forum/#!forum/itri-sofa
+
+
+# How to provide a patch for a new feature
+
+1. If you plan to add new major feature, please don't start coding right away. 
+   Please first discuss with us in the SOFA Google group and share your 
+   conceptions, which might save your efforts and time.
+
+2. If in step 1 you get any acknowledgment from project leaders, use the 
+   following procedure to submit a patch.
+
+    A. Fork SOFA on Github   ( http://help.github.com/fork-a-repo/ )
+    B. Create a topic branch ( git checkout -b your_branch )
+    C. Push to your branch   ( git push origin your_branch )
+    D. Pull a new request on Github ( https://help.github.com/articles/creating-a-pull-request/ )
+
+3. For minor updates, please just pull a new request on Github
+
+
+Thanks a lot.

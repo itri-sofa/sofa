@@ -1,0 +1,104 @@
+#!/bin/bash
+#Description:
+#    purpose: test create 1 directory with multiple files RW test
+#input parameters:
+#    1st: target raw device
+#    2nd: file size
+#
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+disksize=0
+test_mpoint=/mnt/lfsm_ci_autotest_0123456789
+fnum=500
+fsize=200
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    disksize=$gDiskSize
+    fsize=$(($(($disksize))/$fnum))
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    fsize=$2
+else
+    target_dev=lfsm
+    get_disk_size $target_dev
+    disksize=$gDiskSize
+    fsize=$(($(($disksize))/$fnum))
+fi
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev and test disk range 0 - $disksize"
+
+#########################
+#   start testing       #
+#########################
+
+[ -f $test_log_file ] && rm -f $test_log_file
+
+log_msg "$test_scfn [INFO] format device /dev/$target_dev"
+execute "mke2fs -F -b 4096 /dev/$target_dev"
+
+log_msg "$test_scfn [INFO] create mount point and mount"
+[ -d $test_mpoint ] && rm -rf $test_mpoint
+execute "mkdir $test_mpoint"
+execute "mount /dev/$target_dev $test_mpoint"
+
+########################
+#    write files       #
+########################
+
+log_msg "$test_scfn: [INFO] start write data to file"
+
+execute "$PATH_TEST_TOOL/ftest ${test_mpoint} $fnum $fsize 100 1234"
+
+########################
+#   read files back    #
+########################
+
+log_msg "$test_scfn: [INFO] start test data from file"
+
+[ -f $PATH_LOG/r_ftest.log ] && rm -f $PATH_LOG/r_ftest.log
+sleep 3
+
+log_msg "execute cmd: $PATH_TEST_TOOL/ftest ${test_mpoint} $fnum $fsize 0 1234 > $PATH_LOG/r_ftest.log"
+$PATH_TEST_TOOL/ftest ${test_mpoint} $fnum $fsize 0 1234 > $PATH_LOG/r_ftest.log
+
+#########################
+#    check result       #
+#########################
+cor_num=`awk 'BEGIN{count=0;}{if ($1=="Force"){if ($4=="errfile=0"){count ++;}}}END{print count}' $PATH_LOG/r_ftest.log`
+
+log_msg "$test_scfn: [INFO] umount ${test_mpoint}"
+execute "umount ${test_mpoint}"
+sleep 2
+
+execute "rm -rf $test_mpoint"
+
+if (($cor_num==1))
+then
+    log_msg "$test_scfn: [INFO] test result ok"
+else
+    log_msg "$test_scfn: [ERROR] test result fail $cor_num"
+    exit 1
+fi
+

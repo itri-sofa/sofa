@@ -1,0 +1,110 @@
+#!/bin/bash
+#Description:
+#    purpose: Recovery testing after sector-based random write
+#    procedures: 1. write data
+#                2. stop sofa in normal mode
+#                3. restart target device
+#                4. read data and check correctness 
+#                5. test 5 rounds
+#input parameters: 
+#    1st: target raw device
+#    2nd: range to write (in page unit)
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#  set parameters       #
+#########################
+
+#echo "testCfg.crashSimu=0" > /proc/lfsm/lfsm_config
+
+sleep 10
+target_dev=lfsm
+range=0
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+    get_disk_size "$target_dev"
+    range=$((gDiskSize*8))
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    range=$(($2*8))
+else
+    target_dev=lfsm
+    get_disk_size $target_dev
+    range=$((gDiskSize*8))
+fi
+#dmesg -c > /dev/null
+
+amount_data=$((range/2)) 
+Iround=5
+
+#########################
+#   start testing       #
+#########################
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev and range=$range"
+
+[ -f "$test_log_file" ] && rm -f "$test_log_file"
+
+err_ret=0
+st=0
+j=0
+
+uninitialize_sofasrv
+sleep 5
+for ((i=0; i<Iround; i++))
+do
+	[ -f $PATH_LOG/pr$j.log ] && rm -f $PATH_LOG/pr$j.log
+	if (( i>0 )) 
+	then
+		start_sofasrv
+		export utest_seed48=$((12345+i-1))
+		j=$((i-1))
+		
+		$PATH_TEST_TOOL/vtest /dev/$target_dev randsr $range $amount_data $st > $PATH_LOG/pr$j.log
+		check_correct_num $PATH_LOG/pr$j.log
+		err=$((amount_data-gCorrectNum))
+		log_msg "Iround=$i num_of_err=$err num_of_correct=$gCorrectNum"
+		#cat  $PATH_LOG/pr$j.log >>  "$test_log_file"
+
+		if ((err!=0))
+		then
+			log_msg "$test_scfn: [ERROR] test error, please check it"
+			err_ret=1
+			break
+		fi		
+	fi
+	export utest_seed48=$((12345+i))
+	$PATH_TEST_TOOL/vtest /dev/$target_dev randsw $range $amount_data $st >> "$test_log_file"
+	sleep 2
+	log_msg "round $i rmmod"
+	stop_sofasrv
+	sleep 5
+done
+reset_sofasrv
+
+#########################
+#    correct result     # 
+#########################
+
+if (( err_ret == 0 ))
+then
+	log_msg "$test_scfn: [INFO] test result ok"
+else
+	exit $err_ret
+fi 

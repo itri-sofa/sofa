@@ -1,0 +1,82 @@
+#!/bin/bash
+#Description:
+#    purpose: test whehter user can format virtual device of sofa as 
+#             (ext2,ext3,ext4,xfs) file system and use fio to test file write
+#input parameters:
+#    1st: target raw device
+#    2st: target file system
+#
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+target_fs=ext4
+test_mpoint=/mnt/lfsm_ci_autotest_0123456789
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    target_fs=$2
+fi
+
+test_log_file="$test_log_file"_"$target_fs"
+[ -f "$test_log_file" ] && rm -f "$test_log_file"
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev format $target_fs"
+
+#########################
+#   start testing       #
+#########################
+
+log_msg "$test_scfn [INFO] format device /dev/$target_dev for $target_fs"
+umount /dev/$target_dev
+if test "$target_fs" = "xfs"
+then
+    execute "mkfs -t $target_fs -f -s size=4096 /dev/$target_dev"
+else
+    execute "mkfs -t $target_fs -F -b 4096 /dev/$target_dev"
+fi
+
+log_msg "$test_scfn [INFO] create mount point and mount"
+[ -d $test_mpoint ] && rm -rf $test_mpoint
+execute "mkdir $test_mpoint"
+execute "mount /dev/$target_dev $test_mpoint"
+
+########################
+#    fio test          #
+########################
+
+log_msg "$test_scfn [INFO] fio $PATH_TEST/rw_test_fs_rw.fio"
+fio "$PATH_TEST"/rw_test_fs_rw.fio  --filename="$test_mpoint/rw_test_fs_rw_$target_fs.txt" --output="$test_log_file"
+
+#########################
+#    check result       #
+#########################
+#sh $rw_folder/get_fio_result.sh "$log" "$rw_folder"
+
+log_msg "$test_scfn: [INFO] umount ${test_mpoint}"
+execute "umount ${test_mpoint}"
+sleep 2
+
+execute "rm -rf $test_mpoint"
+
+log_msg "$test_scfn [INFO] Finish."

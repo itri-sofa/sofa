@@ -1,0 +1,66 @@
+
+
+declare -ai bad_SEU
+bad_SEU=(87 121 405 663 750 908 1147 1179 1182 1223 1325 1351 1401 1414 1509 1553 1566 1619 1907 2032)   
+
+
+rm a.log
+page_per_seu=1024
+
+##################### CHYI_pagesizeECC #####################
+declare -ai page
+page=(8 8 8 8)
+pick_seu=(602 700 1802 1902)
+ 
+for(( i=0; i<${#page[*]}; i=i+1 ))
+do
+	dmesg -c > /dev/null
+	echo  ${page[$i]}   
+#        ./utest erase $pick_seu ${page[$i]}
+#	./utest r 20480 8 
+	lpn=$((${pick_seu[$i]}*$page_per_seu))
+        lbn=$(($lpn*8))
+	echo $lpn
+	echo ${page[$i]}
+	
+	./utest w $lpn ${page[$i]} 1
+	sleep 3
+	./utest w $lpn ${page[$i]} 0
+	sleep 3
+	./utest r 0 1
+	sleep 1
+	./utest r $lpn ${page[$i]}
+	sleep 1
+	./utest dynpagequery $lbn ${page[$i]}
+	dmesg | awk -f chkbad.awk >> a.log
+done
+
+################## CHYI_3.1 ####################
+#page=(1 2 4 8 16 32 64 128)
+#MAX_TEST_SEU=20
+#declare -ai pick_multi_seu
+
+#for(( i=1 ;i<=MAX_TEST_SEU; i=i+1 ))        # Random pick 20 seu
+#do 
+#	pick_multi_seu=$((RANDOM%2046))
+#	for(( j=2; j<=i; j=j+1 ))
+#	do
+#		while[ ${pick_multi_seu[$j]} == ${pick_multi_seu[$i]} ]
+#		do
+#			pick_multi_seu=$((RANDOM%2046))
+#		done
+#	done
+#done
+
+#for(( i=1;i<=${#page[*]}; i=i+1 ))
+#do
+#	for(( j=1; j<=MAX_TEST_SEU; j=j+1 ))
+#	do
+#		lbn=$((${pick_multi_seu[j]}*$page_per_seu*8))
+#		last_write_page=$(($lbn+$(($((${page[$i]}-1))*8))))
+#		./utest w lbn ${page[$i]} 1
+#		./utest w last_wite_lbn 1 0
+#		./utest r last_write_lbn 1
+#		./utest dynpagequery last_write_lbn 1 
+#	done
+#done 

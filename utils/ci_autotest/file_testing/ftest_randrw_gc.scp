@@ -1,0 +1,307 @@
+#!/bin/bash
+#Description:
+#    purpose: test create multiple directories with multiple files RW test
+#input parameters:
+#    1st: target raw device
+#    2nd: number of directories
+#
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+test_mpoint=/mnt/lfsm_ci_autotest_0123456789
+user=10
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    user=$2
+fi
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev and number of directories=$user"
+
+#########################
+#   drop cache          #
+#########################
+echo 3 > /proc/sys/vm/drop_caches
+sync
+
+#########################
+#   start testing       #
+#########################
+[ -f "$test_log_file" ] && rm -f "$test_log_file"
+
+log_msg "$test_scfn [INFO] format device /dev/$target_dev"
+execute "mkfs.ext4 -F -b 4096 /dev/$target_dev"
+
+log_msg "$test_scfn [INFO] create mount point and mount"
+[ -d $test_mpoint ] && rm -rf $test_mpoint
+execute "mkdir $test_mpoint"
+execute "mount /dev/$target_dev $test_mpoint"
+
+IFS=" " read -r -a fdisksize <<< "$(df | grep $test_mpoint)" #unit is 1K-block
+[ -z "${fdisksize[0]}" ] && echo "[Error] no file system" && exit
+fdisksz_sector=$((2*fdisksize[3]))  # 2 is 1K/512
+fdisksz_sector=$((fdisksz_sector/user))
+
+for((i=0;i<user;i++))
+do
+    execute "mkdir $test_mpoint/user$i"
+done
+
+file_size=2M
+
+unit=${file_size:$((${#file_size}-1)):${#file_size}}
+log_msg "$test_scfn: [INFO] file_size $file_size unit $unit fdisksz_sector $fdisksz_sector" 
+
+if [[ $unit == "k" ]] || [[ $unit == "K" ]]
+then 
+    unit=1024
+elif [[ $unit == "M" ]]
+then
+    unit=$((1024**2))
+elif [[ $unit == "G" ]]
+then
+    unit=$((1024**3))
+else
+    unit=1 
+    log_msg "$test_scfn: [WARNING] file_size $file_size , unit $unit"
+fi
+
+value=${file_size:0:$((${#file_size}-1))}
+fsize=$(($((value*unit))/512))  #sector base : 1024=512*2
+fnum=$(($((fdisksz_sector/fsize))*10))  ###10 is becuase ftest 10%w, so 10%*10
+
+log_msg "$test_scfn: [INFO] fdisksz_secotr=$fdisksz_sector value=$value unit=$unit fnum=$fnum fsize=$fsize unit=$unit" 
+
+if((fnum==0))
+then
+    log_msg "$test_scfn: [ERROR] $test_mpoint ( < $file_size Bytes ) is too small"
+    execute "umount $test_mpoint"
+    exit 1
+fi
+
+########################
+#    write files (I)       #
+########################
+
+log_msg "$test_scfn: [INFO] w times 1" 
+nfiles_access=50000 # 50000* 10% = 5000 files
+last_num=$((fnum%nfiles_access))
+nDir=$((fnum/nfiles_access))
+for((i=0;i<user;i++))
+do
+    for((j=0;j<nDir;j++))
+    do
+        [ -f $PATH_LOG/ftest_randrw_gc$i$j"_0.log" ] && rm -f $PATH_LOG/ftest_randrw_gc$i$j"_0.log"
+        dest_path="$test_mpoint/user$i/file$j"
+
+        execute "mkdir -p $dest_path"
+        log_msg "$test_scfn: [INFO] $PATH_TEST_TOOL/ftest $dest_path $nfiles_access $fsize 10 $((123+i))"
+        $PATH_TEST_TOOL/ftest $dest_path $nfiles_access $fsize 10 $((123+i))  >> $PATH_LOG/ftest_randrw_gc$i$j"_0.log" &
+    done
+
+    if ((last_num!=0))
+    then
+        [ -f $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log" ] && rm -f $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log"
+        dest_path="$test_mpoint/user$i/file$nDir"
+
+        execute "mkdir -p $dest_path"
+        log_msg "$test_scfn: [INFO] $PATH_TEST_TOOL/ftest $dest_path $last_num $fsize 10 $((123))"
+        $PATH_TEST_TOOL/ftest $dest_path $last_num $fsize 10 $((123))  >> $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log" &        
+    fi
+done
+
+for((i=0;i<user;i++))
+do
+    finish=0
+    log_msg "$test_scfn: [INFO] wait round $i ftest......." 
+    while((finish==0))
+    do
+        for((j=0;j<nDir;j++))
+        do
+            if(grep "Drop cache" $PATH_LOG/ftest_randrw_gc$i$j"_0.log" > /dev/null)
+            then
+                finish=1
+                log_msg "$test_scfn: [INFO] $i round $j time ftest Done!"
+            else
+                finish=0
+                break
+            fi
+        done
+        if ((finish==1)) && ((last_num!=0))
+        then
+            if(grep "Drop cache" $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log" > /dev/null)
+            then
+                finish=1
+                log_msg "$test_scfn: [INFO] $i round 0 time ftest Done!"
+            else
+                finish=0
+            fi
+        fi
+        sleep 1
+    done
+done
+
+for((j=1;j<5;j++))
+do
+    ########################## rm all files
+    for((i=0;i<user;i++))
+    do
+        log_msg "$test_scfn: [INFO] delete all files in $test_mpoint/user$i"
+        execute "rm -rf $test_mpoint/user$i"
+    done
+
+    for((i=0;i<user;i++))
+    do
+        for((k=0;k<nDir;k++))
+        do    
+            [ -f $PATH_LOG/ftest_randrw_gc$i$k"_$j.log" ] && rm -f $PATH_LOG/ftest_randrw_gc$i$k"_$j.log"
+        done
+        execute "mkdir $test_mpoint/user$i"
+    done
+    ########################
+    #    write files (N)      #
+    ########################
+    log_msg "$test_scfn: [INFO] w times $((j+2)) "
+    last_num=$((fnum%nfiles_access))
+    nDir=$((fnum/nfiles_access))
+    for((i=0;i<user;i++))
+    do        
+        for((k=0;k<nDir;k++))
+        do
+            [ -f $PATH_LOG/ftest_randrw_gc$i$k"_$j.log" ] && rm -f $PATH_LOG/ftest_randrw_gc$i$k"_$j.log"
+
+            execute "mkdir -p $test_mpoint/user$i/file$k"
+            log_msg "$test_scfn: [INFO] $PATH_TEST_TOOL/ftest $test_mpoint/user$i/file$k $nfiles_access $fsize 10 $((123+i))"
+            $PATH_TEST_TOOL/ftest $test_mpoint/user$i/file$k $nfiles_access $fsize 10 $((123+i))  >> $PATH_LOG/ftest_randrw_gc$i$k"_$j.log" &
+        done
+        if ((last_num!=0))
+        then
+            [ -f $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log" ] && rm -f $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log"
+
+            execute "mkdir -p $test_mpoint/user$i/file$nDir"
+            log_msg "$test_scfn: [INFO] $PATH_TEST_TOOL/ftest $test_mpoint/user$i/file$nDir $last_num $fsize 10 $((123+i))"
+            $PATH_TEST_TOOL/ftest $test_mpoint/user$i/file$nDir $last_num $fsize 10 $((123+i))  >> $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log" &
+        fi
+    done
+
+    for((i=0;i<user;i++))
+    do
+        finish=0
+        log_msg "$test_scfn: [INFO] wait round $i ftest......." 
+        while((finish==0))
+        do
+            for((k=0;k<nDir;k++))
+            do
+                if(grep "Drop cache" $PATH_LOG/ftest_randrw_gc$i$k"_$j.log" > /dev/null)
+                then
+                    finish=1
+                    log_msg "$test_scfn: [INFO] round $i ftest Done!"
+                else 
+                    finish=0
+                    break
+                fi
+            done
+            if ((finish==1)) && ((last_num!=0))
+            then
+                if(grep "Drop cache" $PATH_LOG/ftest_randrw_gc$i$nDir"_0.log" > /dev/null)
+                then
+                    finish=1
+                    echo "$i round $j time ftest Done!"
+                else 
+                    finish=0
+                fi
+            fi
+            sleep 1
+        done
+    done
+done
+
+
+########################## check files ###############################3
+for((i=0;i<user;i++))
+do
+    log_msg "$test_scfn: [INFO] check file$i"
+    [ $nDir -eq 0 ] && nChkDir=1 || nChkDir=$nDir
+    for((k=0;k<=nChkDir;k++))
+    do
+        [ -f $PATH_LOG/ftest_randrw_gc_chk$i$k.log ] && rm -f $PATH_LOG/ftest_randrw_gc_chk$i$k.log
+        IFS=" " read -r -a files <<< "$(ls $test_mpoint/user$i/file$k)"
+        fnumber=${#files[@]}
+        log_msg "$test_scfn: [INFO] $PATH_TEST_TOOL/ftest $test_mpoint/user$i/file$k $fnumber $fsize 0 $((123+i))" 
+        $PATH_TEST_TOOL/ftest $test_mpoint/user$i/file$k "$fnumber" $fsize 0 $((123+i))  >> $PATH_LOG/ftest_randrw_gc_chk$i$k.log &
+    done
+done
+
+for((i=0;i<user;i++))
+do
+    finish=0
+    log_msg "$test_scfn: [INFO]  wait round $i ftest_R......."
+    while((finish==0))
+    do
+        [ $nDir -eq 0 ] && nChkDir=1 || nChkDir=$nDir
+           for((k=0;k<=nChkDir;k++))
+           do
+            if(grep "Drop cache" $PATH_LOG/ftest_randrw_gc_chk$i$k.log > /dev/null)
+            then
+                finish=1
+                log_msg "$test_scfn: [INFO]  round $i ftest_R Done!"
+            else 
+                finish=0
+                break
+            fi
+            sleep 1
+        done
+    done
+done
+
+log_msg "$test_scfn: [INFO]  umount"
+execute "umount $test_mpoint"
+echo 3 > /proc/sys/vm/drop_caches
+sync
+
+for((i=0;i<user;i++))
+do
+    [ $nDir -eq 0 ] && nChkDir=1 || nChkDir=$nDir
+    for((k=0;k<=nChkDir;k++))
+    do
+        correct=1
+        cor_num=($(awk 'BEGIN{count=0;}{if ($1=="Force"){if ($4=="errfile=0"){count ++;}}}END{print count}'  $PATH_LOG/ftest_randrw_gc_chk$i$k.log))
+        if ((cor_num!=1))
+        then
+            correct=0    
+        fi
+    done
+    if ((correct==1))
+    then
+        log_msg "$test_scfn: [INFO] round $i check file is OK"
+        if ((i==$((user-1))))
+        then
+            log_msg "$test_scfn: [INFO] test result is OK!!"
+        fi
+    else
+        log_msg "$test_scfn: [ERROR] round $i data is not correct!!"
+        break
+    fi
+done
+

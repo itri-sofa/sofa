@@ -1,0 +1,3 @@
+echo "add-symbol-file lfsmdr.ko `cat /sys/module/lfsmdr/sections/.text` -s .data `cat /sys/module/lfsmdr/sections/.data` -s .bss `cat /sys/module/lfsmdr/sections/.bss`"
+
+

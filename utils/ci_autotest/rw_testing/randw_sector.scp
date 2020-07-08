@@ -1,0 +1,117 @@
+#!/bin/bash
+#Description: (like as randw_page_32.scp, but is sector-based testing)
+#    purpose: sector-based testing, random write data to target raw device, and verify data 
+#    procedures: first, use the function randswsr in utest to random write in a range,
+#               second, sequential read the data and verify, and we set the length of the write io is 32 sectors.
+#input parameters:
+#    1st: target raw device
+#    2nd: amount of data to write (in page unit)
+#    3th: SSD page unit is 4KB or 8KB
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 1 ]
+then
+    log_msg "$test_scfn: [INFO] sofa service is running, stop it."
+    stop_sofasrv
+fi
+
+reset_sofasrv
+
+start_sofasrv
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+amount_data=0
+to_8k=0
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    amount_data=$gDiskSize
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    amount_data=$2
+elif [ $# -eq 3 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    amount_data=$2
+    to_8k=$3
+else
+    target_dev=lfsm
+    get_disk_size $target_dev
+    amount_data=$gDiskSize
+fi
+
+#if amount_data >= disksize, amount_data = disksize
+if [ $amount_data -ge $gDiskSize ] ; then
+    amount_data=$gDiskSize
+fi
+
+log_msg "$test_scfn: [INFO] start testing with target dev = $target_dev, and amount data = $amount_data, to_8k = $to_8k"
+
+#########################
+#  set other parameters #
+#########################
+
+test_tool=${PATH_TEST_TOOL}/vtest
+
+if [ "$to_8k" == 1 ]
+then
+    all_sectors=$(($amount_data*16))
+else
+    all_sectors=$(($amount_data*8))
+fi
+
+log_msg "$test_scfn: [INFO] all_sectors = $all_sectors, test_tool = $test_tool"
+
+#########################
+#   start testing       #
+#########################
+
+err_ret=0
+
+[ -f $test_log_file ] && rm -f $test_log_file
+
+export utest_seed48=321
+
+sector=32
+range=$(($all_sectors-$sector))
+range=$(($range+1))
+log_msg "$test_scfn: [INFO] TEST: Sector Random W Sequential R len=$sector, range=$range"
+
+$test_tool /dev/$target_dev randswsr $range $(($all_sectors/8)) 0 $sector >> $test_log_file
+if [ $? -ne 0 ]; then
+    log_msg "$test_scfn: [ERROR] test error, please check it"
+    err_ret=1
+fi
+
+cor_num=`awk -f "../common/check_correct_num.awk" $test_log_file`
+err=$(($range-$cor_num))
+log_msg "$test_scfn: [INFO] num_of_err=$err num_of_correct=$cor_num"
+if [ $err -ne 0 ]; then
+    log_msg "$test_scfn: [ERROR] data is not correct!!, err = $err"
+    log_msg "$test_scfn: [ERROR] Random wirte for $sector sectors DATE IS NOT CORRECT!!"
+    err_ret=1
+fi
+
+if [ "$err_ret" == 0 ]
+then
+    log_msg "$test_scfn: [INFO] test result ok"
+    #TODO notify the caller or jenkins server that test is ok
+else
+    log_msg "$test_scfn: [INFO] test error, err_ret = $err_ret"
+    exit $err_ret
+fi

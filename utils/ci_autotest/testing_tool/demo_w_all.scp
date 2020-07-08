@@ -1,0 +1,47 @@
+cp utS2CE utest 
+
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+pageseu=2048
+BLKseu=32
+rm a.log
+
+############## Wri te all SEU #############################
+weak_seu=(26 56 86 98 290 680 1000 1450 1580 2008)
+i=5
+#for (( j=$((${#weak_seu[*]}-1)); j>=0; j=j-1))
+for (( j=1000; j<2046; j=j+1 ))   
+do  
+	#seu=${weak_seu[$j]}
+	seu=$j
+	if((j==weak_seu[$i]))
+	then
+		i=$(($i+1))
+		j=$(($j+1))
+	else
+		./utest sw $seu $BLKseu >> tmp
+		grep "return:-5" tmp
+		err_con=$?
+	
+		if (( $err_con==0 ))
+			then echo "Write super EU $seu in Write Error" >> a.log
+		fi	
+	fi	
+done
+read
+for (( j=1000; j<2046; j=j+1 )) 
+do
+	lpn=$(( $j*$pageseu ))
+	./utest cmp $lpn $BLKseu $lpn
+	con1=$?
+	lpn64=$(( $lpn+$BLKseu ))
+	./utest cmp $lpn64 $BLKseu $lpn64
+	con2=$?
+	if (( $con1==2 && $con2==1 ))
+		then echo "Write super EU $j OK" >> a.log
+	else
+		echo "Write super EU $j Fail" >> a.log
+	fi
+done
+#########################################################
+
+

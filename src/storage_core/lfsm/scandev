@@ -1,0 +1,2 @@
+#!/bin/sh
+/home/weafon/lfsm_rc3_v1802_105/rfsioctl /dev/lfsm scandev

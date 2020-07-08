@@ -1,0 +1,131 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:      sofa_service
+# Required-Start: $local_fs
+# Should-Start: 
+# Required-Stop:
+# Should-Stop:
+# Default-Start:  2 3 5
+# Default-Stop:
+# Description:  Start and Stop Sofa Service --- init.d
+### END INIT INFO
+#
+# chkconfig: 345 20 80
+# description: Start and Stop Sofa Service --- init.d
+#
+## source function library
+## /etc/rc.d/init.d/functions
+
+start() {
+
+        #logger -s "[sofa service] Load sofa_daemon......."
+	echo "[sofa service] Load sofa_daemon....... "
+        ## echo "1pid= ${SOFA_PID}"
+        ##touch /var/lock/subsys/dom0_l2
+	
+        #pid=`pgrep -f sofa_daemon`
+        #pid=`ps -C sofa_daemon u | grep -v grep | awk '{print $2}'`
+        #pid=`p:w:s -ef | grep sofa_daemon | grep -v grep | awk -F' ' '{print $2}'` 
+     
+        # ps_out=$( ps -C sofa_daemon u | awk '{print $2}' )
+        # ps_out=$(  ps -elf | grep sofa_daemon | grep -v grep | awk '{print $4}' )
+        # ps_out=$(ps -ef | grep sofa_daemon | grep -v 'grep' | awk {'print $2'})
+        # ps_out=$(pgrep -f sofa_daemon )
+     
+        pid=`pgrep -f sofa_daemon`
+
+       
+       # if [  $pid  ]; then
+       #      echo "-1,  is running"         
+       # else
+       #      echo "-1,  is not running"
+       # fi
+
+        if [ "" !=  "$pid" ] ; then
+         #   logger -s "[sofa service] sofa_daemon has already been running. pid= $pid  Don't start it again."
+            echo "[sofa service] sofa_daemon has already been running. pid= $pid  Don't start it again."
+            exit 1
+        else
+          #  logger -s "[sofa service] start to run sofa_daemon."
+            echo "[sofa service] start to run sofa_daemon."
+            sh /usr/sofa/bin/start-sofa.sh
+        fi
+
+
+      #  if [[ "" !=  $pid ]]; then
+      #      echo "1, running pid= $pid"
+      #  else
+      #      echo "1, not running pid=$pid"
+      #  fi
+
+      #  if pgrep sofa_daemon > /dev/null
+      #  then
+      #          echo "2, Running pid= $pid"
+      #  else
+      #          echo "2, not running pid= $pid"
+      #  fi      
+        
+
+ 
+   }
+
+stop() {
+        # logger -s "[sofa service] Unload sofa_daemon........."
+	echo "[sofa service] Unload sofa_daemon........."        
+        pid=`pgrep -f sofa_daemon`
+       
+        if [ "" !=  "$pid" ] ; then
+             echo "[sofa service] try to kill sofa_daemon. pid= $pid"
+           #  logger -s "[sofa service] try to kill sofa_daemon. pid=$pid"
+             sh /usr/sofa/bin/stop-sofa.sh
+
+           #  logger -s "[sofa service] sofa_daemon killed."
+             echo "[sofa service] sofa_daemon killed"
+        else
+           # logger -s "[sofa service] sofa_daemon is not running. Kill sofa_daemon action cannot be executed."
+            echo "[sofa service] sofa_daemon is not running. Kill sofa_daemon action cannot be executed."
+        fi
+  }
+
+
+status(){ 
+      # logger -s "[sofa service] Check sofa_daemon status...."
+      echo "[sofa service] Check sofa_daemon status....."
+      pid=`pgrep -f sofa_daemon`
+       
+
+        if [ "" !=  "$pid" ] ; then
+             echo "[sofa service] status: sofa_daemon is running.  pid= $pid"
+           #  logger -s "[sofa service] status: sofa_daemon is running. pid=$pid"
+        else
+           #  logger -s "[sofa service] status: sofa_daemon is not running."
+            echo "[sofa service] status: sofa_daemon is not running."
+        fi        
+}  
+
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        status
+        ;; 
+  restart)
+        stop
+        sleep 1
+        start
+        ;;
+  ## condrestart)
+  ##      [ -f /var/lock/subsys/dom0_l2 ] && $0 restart || :
+  ##      ;;
+  *)
+	echo "Usage: $0 {start|stop|status|restart}"
+	exit 1
+esac
+
+exit 0

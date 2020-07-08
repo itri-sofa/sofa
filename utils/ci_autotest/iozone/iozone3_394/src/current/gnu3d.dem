@@ -1,0 +1,282 @@
+#
+# $Id: 3D plot of performance
+#
+# Processes files that were created by Generate_Graphs
+# and displays the results. Also, saves a postscript copy.
+#
+# Don Capps
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set parametric
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'write/iozone_gen_out.gnuplot' title "Write performance"
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "write/write.ps"
+splot 'write/iozone_gen_out.gnuplot' title "Write performance"
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'rewrite/iozone_gen_out.gnuplot' using 1:2:3 title "ReWrite performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "rewrite/rewrite.ps"
+splot 'rewrite/iozone_gen_out.gnuplot' using 1:2:3 title "ReWrite performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'read/iozone_gen_out.gnuplot' using 1:2:3 title "Read performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "read/read.ps"
+splot 'read/iozone_gen_out.gnuplot' using 1:2:3 title "Read performance" with lines
+
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'reread/iozone_gen_out.gnuplot' using 1:2:3 title "Reread performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "reread/reread.ps"
+splot 'reread/iozone_gen_out.gnuplot' using 1:2:3 title "Reread performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'randread/iozone_gen_out.gnuplot' using 1:2:3 title "Random read performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "randread/randread.ps"
+splot 'randread/iozone_gen_out.gnuplot' using 1:2:3 title "Random read performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'randwrite/iozone_gen_out.gnuplot' using 1:2:3 title "Random write performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "randwrite/randwrite.ps"
+splot 'randwrite/iozone_gen_out.gnuplot' using 1:2:3 title "Random write performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'bkwdread/iozone_gen_out.gnuplot' using 1:2:3 title "Read Backwards performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "bkwdread/bkwdread.ps"
+splot 'bkwdread/iozone_gen_out.gnuplot' using 1:2:3 title "Read Backwards performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'recrewrite/iozone_gen_out.gnuplot' using 1:2:3 title "Record rewrite performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "recrewrite/recrewrite.ps"
+splot 'recrewrite/iozone_gen_out.gnuplot' using 1:2:3 title "Record rewrite performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'strideread/iozone_gen_out.gnuplot' using 1:2:3 title "Stride read performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "strideread/strideread.ps"
+splot 'strideread/iozone_gen_out.gnuplot' using 1:2:3 title "Stride read performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'fwrite/iozone_gen_out.gnuplot' using 1:2:3 title "Fwrite performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "fwrite/fwrite.ps"
+splot 'fwrite/iozone_gen_out.gnuplot' using 1:2:3 title "Fwrite performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'frewrite/iozone_gen_out.gnuplot' using 1:2:3 title "Frewrite performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "frewrite/frewrite.ps"
+splot 'frewrite/iozone_gen_out.gnuplot' using 1:2:3 title "Frewrite performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'fread/iozone_gen_out.gnuplot' using 1:2:3 title "Fread performance" with lines
+pause -1 "Hit return to continue"
+set terminal postscript color
+set output "fread/fread.ps"
+splot 'fread/iozone_gen_out.gnuplot' using 1:2:3 title "Fread performance" with lines
+
+set terminal x11
+set title "Iozone performance"
+set grid lt 2 lw 1
+set surface
+set xtics
+set ytics
+set logscale x 2
+set logscale y 2
+set autoscale z
+set xrange [2.**5:2.**24]
+set xlabel "File size in 2^n KBytes"
+set ylabel "Record size in 2^n Kbytes"
+set zlabel "Kbytes/sec"
+set data style lines
+set dgrid3d 80,80,3
+splot 'freread/iozone_gen_out.gnuplot' using 1:2:3 title "Freread performance" with lines
+pause -1 "Hit return to exit"
+set terminal postscript color
+set output "freread/freread.ps"
+splot 'freread/iozone_gen_out.gnuplot' using 1:2:3 title "Freread performance" with lines

@@ -1,0 +1,13 @@
+
+make EXTRA_CFLAGS=-DVIODATE EXTRA_CFLAGS+=-DPSEUDO EXTRA_CFLAGS+=-DPROFILTER
+
+
+#cp lfsm.c lfsm_tmp.c
+#make -f Makefile.lfsm EXTRA_CFLAGS=-DVIODATE EXTRA_CFLAGS+=-DPSEUDO EXTRA_CFLAGS+=-DPROFILTER
+#mv lfsmdr.ko lfsmdr_sdb.ko
+
+#sed s/sdb/sdc/ lfsm.c > lfsm_tmp.c
+#make -f Makefile.lfsm EXTRA_CFLAGS=-DVIODATE EXTRA_CFLAGS+=-DPSEUDO EXTRA_CFLAGS+=-DPROFILTER
+#mv lfsmdr.ko lfsmdr_sdc.ko
+
+

@@ -1,0 +1,75 @@
+#!/bin/bash
+#Description:
+#    purpose: using iozone to test sofa
+#    procedure: format lfsm device and mount file system
+#               run iozone on file system
+#input parameters:
+#    1st: target raw device
+#
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+test_mpoint=/mnt/lfsm_ci_autotest_0123456789
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+else
+    target_dev=lfsm
+fi
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev"
+
+#########################
+#  mkfs and mount       #
+#########################
+
+[ -f $test_log_file ] && rm -f $test_log_file
+log_msg "$test_scfn [INFO] format device /dev/$target_dev"
+execute "mke2fs -F /dev/$target_dev"
+
+log_msg "$test_scfn [INFO] create mount point and mount"
+[ -d $test_mpoint ] && rm -rf $test_mpoint
+execute "mkdir $test_mpoint"
+execute "mount /dev/$target_dev $test_mpoint"
+
+#########################
+#  iozone test          #
+#########################
+
+log_msg "$test_scfn [INFO] iozone auto---please wait for the result"
+sleep 2
+log_msg "$test_scfn [INFO] auto size 64k~8M test:"
+execute "$PATH_TEST_TOOL/iozone -a -n 64k -g 8M -i 0 -i 1 -i 2 -i 3 -i 4 -i 5 -i 6 -f $test_mpoint/b -O -I -k 1024" >> $test_log_file
+
+log_msg "$test_scfn [INFO] iozone verify---please wait for the result"
+sleep 2
+log_msg "$test_scfn [INFO] verfiy data test:"
+execute "$PATH_TEST_TOOL/iozone -s 1M -i 0 -i 1 -i 2 -i 3 -i 4 -i 5 -i 6 -f $test_mpoint/b -O -I -k 1024 -V 1010" >> $test_log_file
+
+log_msg "$test_scfn: [INFO] umount ${test_mpoint}"
+execute "umount ${test_mpoint}"
+
+execute "rm -rf $test_mpoint"
+
+log_msg "$test_scfn: [INFO] test result ok"
+
+

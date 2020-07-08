@@ -1,0 +1,11 @@
+./oninit.scp
+echo $LFSMPATH
+[ -f /dev/lfsm ] && rmmod lfsmdr
+insmod $LFSMPATH/lfsmdr_sdb.ko
+$LFSMPATH/rfsioctl /dev/lfsm finish_init 14 0
+./init.scp
+
+
+
+
+

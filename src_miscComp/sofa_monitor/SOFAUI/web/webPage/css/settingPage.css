@@ -1,0 +1,66 @@
+/*
+Copyright (c) 2015-2025 Industrial Technology Research Institute.
+
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+*/
+/* 
+    Created on : 2016/12/26, 下午 02:25:07
+    Author     : A40385
+*/
+.setting_MainFrame{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.setting_MainTitleFrame{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    line-height: 40px;
+    text-indent: 15px;
+    font-size: 22px;
+    color: #434343;
+}
+
+.settingPage_settingOutterFrame{
+    position: relative;
+    float: left;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 12px;
+    min-height: 50px;
+    border-radius: 10px;
+    background-color: #dcdcdc;
+    overflow: hidden;  
+    padding-bottom: 30px;
+}
+
+.settingPage_settingTitleFrame{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 40px;
+    font-size: 24px;
+    line-height: 40px;
+    text-indent: 14px;
+    color: #292929;
+}

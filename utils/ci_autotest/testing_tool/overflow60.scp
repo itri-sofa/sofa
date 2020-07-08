@@ -1,0 +1,19 @@
+#./utest w 10*2048 8 1
+#./utest w 10*2048 8 0
+#./utest r 10*2048 8
+#./utest dynpagequery 80*2048 8
+
+#./utest w 20*2048 8 1
+#./utest w 20*2048 8 0
+#./utest r 20*2048 8
+#./utest dynpagequery 160*2048 8
+
+./utest w 30*2048 8 1
+./utest w 30*2048 8 0
+./utest r 30*2048 8
+./utest dynpagequery 240*2048 8
+
+
+
+
+

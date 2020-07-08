@@ -1,0 +1,32 @@
+declare -ai bad_SEU
+bad_SEU=(87 121 405 663 750 908 1147 1179 1182 1223 1325 1351 1401 1414 1509 1553 1566 1619 1907 2032)   
+
+rm a.log
+pageseu=1024
+BLKseu=16
+page=(1 2 4 8 16)
+
+################ Read for addres #############################
+for (( i=0; i<${#bad_SEU[*]}; i=i+1 )) 
+do 
+	dmesg -c > /dev/null
+	lbn=$(( ${bad_SEU[$i]}*$pageseu*8 ))
+	j=$(($RANDOM%5))
+	./utest sr $bad_SEU[$i] ${page[$j]}
+	./utest dynpagequery $lbn ${page[$j]}
+	dmesg | awk -f chkbad.awk
+done
+
+################ Read for size #############################
+seu=1000
+len=(1 2 4 8 16)
+for (( i=0; i<${#len[*]}; i=i+1 )) 
+do 
+	./utest r $seu ${len[i]}
+	if [[ $?==1 ]] ;
+		then echo "Read super EU ${len[i]} OK" >> a.log
+	elif [[ $?!=1 ]];
+		then echo "Read super EU ${len[i]} Fail" >> a.log
+	fi
+done
+echo "===Read for size done==="

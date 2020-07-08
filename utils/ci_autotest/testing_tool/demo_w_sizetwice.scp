@@ -1,0 +1,33 @@
+cp utS2CE utest
+declare -ai bad_SEU
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+
+rm a.log
+page_per_seu=2048
+BLKseu=32
+
+##################### CHYI_pagesizeECC #####################
+#page=(16 16 16 16 16) 
+#pick_seu=(600 700 1800 1900)
+ 
+#for(( i=0; i<${#page[*]}; i=i+1 ))
+for (( i=1100; i<1300; i=i+10 )) 
+do
+	dmesg -c > /dev/null
+	lpn=$(( $i*$page_per_seu ))
+        lbn=$(( $lpn*8 ))
+	j=$(( $RANDOM%$BLKseu+1 ))
+#	len=${page[$j]}
+	len=$j
+	./utest w $lpn $len 1
+#	sleep 1
+	./utest w $lpn $len 0
+#	sleep 1
+	./utest r $lpn $len
+#	chklpn=$(($lpn+$len-1))
+read
+	./utest dynpagequery $lbn $len
+	echo "Read Fail report for $lpn in length $len" >> a.log
+ 	dmesg | awk -v v1=$lpn -v v2=$len -f chkbad.awk >> a.log
+done
+

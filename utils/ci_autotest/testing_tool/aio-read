@@ -1,0 +1,20 @@
+[global]
+ioengine=libaio
+buffered=0
+bs=4k
+iodepth=32
+#iodepth_batch_complete=16
+#runtime=300
+size=200M
+directory=/dev
+filename=sdb
+direct=1
+#verify=meta
+
+[seq-read]
+offset=0
+rw=read
+do_verify=1
+#zonesize=0 #4096
+#zoneskip=0 #4190208
+

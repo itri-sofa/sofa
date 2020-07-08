@@ -1,0 +1,130 @@
+./demo_init.scp
+cp utS2CE utest
+seu=40
+len=64
+page=32
+pagesize=2048
+offset=2  
+bad=380
+###############################################################
+./utest erase $seu $page
+lpn=$(( $seu*$pagesize ))
+./utest r $lpn 1
+r1=$?
+lpn=$(( $lpn+63 )) 
+./utest r $lpn 1
+r2=$?
+if (( $r1==1 && $r2==1 ))
+	then echo "case 1: erase $seu in $page block ok" > demo1.log
+else
+	echo "case 1: erase $seu in $page block fail" >> demo1.log
+fi
+echo "===== end of erase ====="
+read
+##############################################################
+./utest sw $seu $len
+lpn=$(( $seu*$pagesize ))
+./utest cmp $lpn $page $lpn
+if (( $?==2 ))
+	then echo "case 2: write $seu in $len page ok" >> demo1.log
+else
+	echo "case 2: write $seu in $len page fail" >> demo1.log
+fi
+echo "===== end of SEU-write $len page ====="
+read
+##############################################################
+./utest erase $seu $page
+lpn=$(( $seu*$pagesize ))
+./utest r $lpn $page 
+if (( $?==1 ))
+	then echo "case 3: read $seu in $page block ok" >> demo1.log
+else
+	echo "case 3: read $seu in $page block fail" >> demo1.log
+fi
+echo "===== end of Erase $page block ====="
+read
+#############################################################
+echo "case 4: read fail report" >> demo1.log
+lpn=$(( $seu*$pagesize ))
+./utest w $lpn 1
+./utest w $lpn 1 0
+dmesg -c > /dev/null
+./utest r $lpn 1
+lbn=$(( $lpn*8 ))
+./utest dynpagequery $lbn 1
+dmesg | awk -v v1=$lpn -v v2=1 -f chkbad.awk >> demo1.log
+echo "===== end of Read fail report ====="
+read
+############################################################
+echo "case 5: write fail report" >> demo1.log
+dmesg -c > /dev/null
+errseu=$(( 100-$offset ))
+./utest sw $errseu 8
+sleep 1
+lpn=$(( $errseu*$pagesize))
+lbn=$(( $lpn*8 ))
+./utest dynpagequery $lbn 8
+dmesg | awk -v v1=$lpn -v v2=8 -f chkbad.awk >> demo1.log
+echo "===== end of write fail report ====="
+read
+############################################################
+echo  "case 6: erase fail report" >> demo1.log
+dmesg -c > /dev/null
+badseu=$(( $bad-$offset ))
+./utest erase $badseu 8
+lpn=$(( $bad*$pagesize))
+lbn=$(( $lpn*8 ))
+./utest dynblkquery $lbn 8
+dmesg | awk -v v1=$lpn -f chkbad.awk >> demo1.log
+echo "===== end of erase fail report ====="
+read
+############################################################
+sou=30
+dest=50				
+soulpn=$(( $sou*$pagesize ))
+destlpn=$(( $dest*$pagesize ))
+./utest sw $sou $len
+./utest copy $sou $page $dest
+./utest cmp $soulpn $page $destlpn
+if (( $?==2 ))
+	then echo "case 7: copy $sou to $dest in length $page OK" >> demo1.log
+else
+	echo "case 7: copy $sou to $dest in length $page fail" >> demo1.log
+fi
+echo "===== end of copy $sou to $dest in $page page ====="
+read
+############################################################
+echo "case 8-1: copy fail report (read fail)" >> demo1.log
+dmesg -c > /dev/null
+sou=40
+dest=60
+./utest copy $sou 1 $dest
+lpn=$(( $sou*$pagesize ))
+lbn=$(( $lpn*8 ))
+./utest dynpagequery $lbn 1
+dmesg | awk -v v1=$lpn -v v2=1 -f chkbad.awk >> demo1.log
+echo "===== end of copy fail with read fail ====="
+read
+############################################################
+echo "case 8-2: copy fail report (write fail)"  >> demo1.log
+dmesg -c > /dev/null
+sou=50
+dest=98
+./utest copy $sou 8 $dest
+lpn=$(( $dest*$pagesize ))
+lbn=$(( $lpn*8 ))
+./utest dynpagequery $lbn 1
+dmesg | awk -v v1=$lpn -v v2=1 -f chkbad.awk >> demo1.log
+echo "===== end of copy fail with write fail ====="
+read
+############################################################
+echo "case 9: mark bad block report" >> demo1.log 
+dmesg -c > /dev/null
+./utest staticquery 0 0
+dmesg | awk -f stabad.awk > bad1.log
+./utest markbad $seu $page
+dmesg -c > /dev/null
+./utest staticquery 0 0
+dmesg | awk -f stabad.awk > bad2.log 
+diff -f bad1.log bad2.log | awk -v v1=$seu -v v2=$page -v v3=$page -f chksbad.awk >> demo1.log
+echo "===== end of mark bad ====="

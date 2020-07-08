@@ -1,0 +1,73 @@
+#!/bin/bash
+#Description:
+#    purpose: write data to target raw device by fio 
+#input parameters:
+#    1st: target raw device
+#    2st: partition numbers
+#
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+part_no=10
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    part_no=$2
+fi
+
+[ -f "$test_log_file" ] && rm -f "$test_log_file"
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev"
+
+#########################
+#   start testing       #
+#########################
+
+log_msg "$test_scfn [INFO] create $part_no partitions for device /dev/$target_dev"
+step=$((100/part_no))
+min=0
+max=$step
+arg=""
+parted -s /dev/"$target_dev" mklabel gpt
+for((i=1;i<=part_no;i++))
+do
+    execute "parted -s /dev/$target_dev mkpart extended ext2 $min% $max%"
+    arg+="--filename /dev/$target_dev$i "
+    min=$max
+    max=$((max+step))
+done
+
+########################
+#    fio test          #
+########################
+
+log_msg "$test_scfn [INFO] fio $PATH_TEST/rw_test_fs_rw.fio"
+fio "$PATH_TEST"/rw_test_fs_rw.fio $arg --output="$test_log_file"
+
+#########################
+#    check result       #
+#########################
+#sh $rw_folder/get_fio_result.sh "$log" "$rw_folder"
+
+log_msg "$test_scfn [INFO] Finish."

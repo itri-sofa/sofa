@@ -1,0 +1,44 @@
+cp utS2CE utest
+rm a.log
+pagesize=2048  
+BLKseu=32
+########################### Source SEU READ FAIL #################################
+for (( i=10; i<2046; i=i+200 ))
+do
+	dest=$(($i+2))
+	seu=$i
+	len=$BLKseu
+	lpn=$(( $seu*$pagesize ))
+	dlpn=$(( $dest*$pagesize ))
+
+	./utest w $lpn $len 1
+	./utest w $lpn $len 0
+	./utest copy $seu $len $dest
+
+	dmesg -c > /dev/null
+	lbn=$(( $lpn*8 ))
+	./utest dynpagequery $lbn $len
+
+	echo "Copy Fail report (read fail) for SEU $seu in page 16" >> a.log 
+	dmesg | awk -v v1=$lpn -v v2=$len -f chkbad.awk >> a.log  	
+
+
+	./utest cmp $lpn $len $dlpn
+	con1=$?
+
+	dlpn=$(($dlpn+$len))
+ 	./utest cmp $dlpn 1 $dlpn
+	con2=$?
+
+	if (( $con1==2 && $con2==1 ))
+		then echo "Copy seu $seu to $dest in length $len OK" >> a.log
+	else
+		echo "Copy seu $seu to $dest in length $len fail" >> a.log
+	fi		
+
+
+done
+echo "End of copy fail for address"
+
+
+ 

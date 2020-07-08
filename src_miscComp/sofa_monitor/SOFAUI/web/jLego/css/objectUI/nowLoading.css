@@ -1,0 +1,71 @@
+/*
+Copyright (c) 2015-2025 Industrial Technology Research Institute.
+
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+*/
+/* 
+    Created on : 2015/7/6, 下午 12:54:48
+    Author     : 531206
+*/
+
+.loading_background{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    position: absolute;
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -moz-box-pack:center;
+    box-pack:center;
+    text-align: center;
+}
+
+.loading_foreground{
+    position: relative;
+    width: 160px;
+    height: 160px;
+    display: inline-block;
+    margin-top: 38px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid lightgray;
+    box-shadow:4px 4px 12px -2px rgba(111,111,111,0.5);
+    
+}
+
+.loading_icon{
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+    position: relative;
+}
+
+.loading_text{
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    float:left;
+    position: relative;
+    text-align: center;
+    font-size: small;
+    margin-top: 20px;
+    color: black;
+}

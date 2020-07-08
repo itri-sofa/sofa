@@ -1,0 +1,43 @@
+kncp utS2CE utest
+declare -ai bad_SEU
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+
+rm a.log
+page_per_seu=2048
+
+################## write last page twice ####################
+page=(2 4 8 10 14 16 17 20 25 27 32)
+MAX_TEST_SEU=20
+pick_seu=(80 300 1400 1520 1950 2400)
+
+for(( i=1400 ;i<2046; i=i+200 ))
+do
+	dmesg -c > /dev/null
+	lpn=$(( $i * $page_per_seu ))
+	j=$(( $RANDOM%${#page[*]} ))	
+	last_lpn=$(( $lpn + ${page[$j]} - 1 ))
+	last_lbn=$(( $last_lpn * 8 ))
+
+	./utest w $lpn ${page[$j]} 1
+	./utest w $last_lpn 1 0
+	./utest r $last_lpn 1
+#	sleep 1
+	./utest dynpagequery $last_lbn 1
+
+	echo "Read Fail report for SEU $i in page ${page[$j]}" >> a.log
+	dmesg | awk -v v1=$last_lpn -v v2=1 -f chkbad.awk >> a.log  
+
+done 
+
+################# write the bad page ##################
+
+#for(( i=0; i<${#page[*]}; i=i+1 ))
+#do
+#	dmesg -c> /dev/null
+#	lpn=$(( ${pick_seu[$i]}*$page_per_seu ))
+#	lbn=$(( $lpn*8 ))
+#	./utest w $lpn 32 0
+#	sleep 3
+#	./utest dynpagequery lbn 32
+#	dmesg | awk -f chkbad.awk >> a.log
+#done  

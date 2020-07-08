@@ -1,0 +1,1916 @@
+unreferenced object 0xf7040300 (size 32):
+  comm "swapper", pid 0, jiffies 4294667377 (age 7554.207s)
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4509>] __kmalloc_track_caller+0x14a/0x16e
+    [<c04c90ed>] kmemdup+0x20/0x30
+    [<c05caf08>] selinux_cred_prepare+0x18/0x2b
+    [<c05c546f>] security_prepare_creds+0x15/0x18
+    [<c045d65f>] prepare_creds+0x7a/0x8f
+    [<c045d6dc>] copy_creds+0x68/0x16a
+    [<c043ff95>] copy_process+0x294/0xf29
+    [<c0440d61>] do_fork+0x137/0x2c9
+    [<c040e8b2>] kernel_thread+0x83/0x8b
+    [<c0843017>] rest_init+0x1f/0xab
+    [<c0b2a9a0>] start_kernel+0x3a3/0x3aa
+    [<c0b2a0c9>] i386_start_kernel+0xb8/0xc0
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7056f00 (size 192):
+  comm "swapper", pid 1, jiffies 4294667730 (age 7553.861s)
+  hex dump (first 32 bytes):
+    00 00 f0 7f 00 00 00 00 ff ff bf fe 00 00 00 00  ................
+    50 4a 29 f7 00 02 00 00 88 0d 00 01 0c 03 00 00  PJ).............
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c08523a0>] pci_acpi_scan_root+0x115/0x1aa
+    [<c0849cc7>] acpi_pci_root_add+0x17e/0x26c
+    [<c0648f70>] acpi_device_probe+0x4c/0x102
+    [<c06b80cf>] driver_probe_device+0x105/0x222
+    [<c06b823b>] __driver_attach+0x4f/0x6b
+    [<c06b78e9>] bus_for_each_dev+0x42/0x6c
+    [<c06b7e6c>] driver_attach+0x19/0x1b
+    [<c06b7242>] bus_add_driver+0xc9/0x217
+    [<c06b84b3>] driver_register+0x90/0xf0
+    [<c064a412>] acpi_bus_register_driver+0x3f/0x41
+    [<c0b56a53>] acpi_pci_root_init+0x1b/0x2a
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+unreferenced object 0xf7294a50 (size 16):
+  comm "swapper", pid 1, jiffies 4294667730 (age 7553.862s)
+  hex dump (first 16 bytes):
+    50 43 49 20 42 75 73 20 30 30 30 30 3a 30 30 00  PCI Bus 0000:00.
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c060143d>] kvasprintf+0x28/0x45
+    [<c060146b>] kasprintf+0x11/0x16
+    [<c08523ba>] pci_acpi_scan_root+0x12f/0x1aa
+    [<c0849cc7>] acpi_pci_root_add+0x17e/0x26c
+    [<c0648f70>] acpi_device_probe+0x4c/0x102
+    [<c06b80cf>] driver_probe_device+0x105/0x222
+    [<c06b823b>] __driver_attach+0x4f/0x6b
+    [<c06b78e9>] bus_for_each_dev+0x42/0x6c
+    [<c06b7e6c>] driver_attach+0x19/0x1b
+    [<c06b7242>] bus_add_driver+0xc9/0x217
+    [<c06b84b3>] driver_register+0x90/0xf0
+    [<c064a412>] acpi_bus_register_driver+0x3f/0x41
+    [<c0b56a53>] acpi_pci_root_init+0x1b/0x2a
+    [<c040305b>] do_one_initcall+0x51/0x144
+unreferenced object 0xf7162b80 (size 32):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.963s)
+  hex dump (first 32 bytes):
+    60 2b 16 f7 00 00 00 00 00 00 00 00 00 00 00 00  `+..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<c0b499b9>] kmemleak_test_init+0x27/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7162b60 (size 32):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.963s)
+  hex dump (first 32 bytes):
+    40 2b 16 f7 00 00 00 00 00 00 00 00 00 00 00 00  @+..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<c0b499f6>] kmemleak_test_init+0x64/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7197000 (size 1024):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.966s)
+  hex dump (first 32 bytes):
+    00 74 19 f7 00 00 00 00 00 00 00 00 00 00 00 00  .t..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<c0b49a31>] kmemleak_test_init+0x9f/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7197400 (size 1024):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.966s)
+  hex dump (first 32 bytes):
+    00 78 19 f7 00 00 00 00 00 00 00 00 00 00 00 00  .x..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<c0b49a6c>] kmemleak_test_init+0xda/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7e17000 (size 64):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.966s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04d8037>] __vmalloc_node+0x88/0x99
+    [<c04d8184>] vmalloc+0x26/0x28
+    [<c0b49b8b>] kmemleak_test_init+0x1f9/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7e1a000 (size 64):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.966s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04d8037>] __vmalloc_node+0x88/0x99
+    [<c04d8184>] vmalloc+0x26/0x28
+    [<c0b49ba2>] kmemleak_test_init+0x210/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7e2b000 (size 64):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.966s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04d8037>] __vmalloc_node+0x88/0x99
+    [<c04d8184>] vmalloc+0x26/0x28
+    [<c0b49bba>] kmemleak_test_init+0x228/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7e2e000 (size 64):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.966s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04d8037>] __vmalloc_node+0x88/0x99
+    [<c04d8184>] vmalloc+0x26/0x28
+    [<c0b49bcf>] kmemleak_test_init+0x23d/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf7e33000 (size 64):
+  comm "swapper", pid 1, jiffies 4294668703 (age 7552.969s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04d8037>] __vmalloc_node+0x88/0x99
+    [<c04d8184>] vmalloc+0x26/0x28
+    [<c0b49be4>] kmemleak_test_init+0x252/0x360
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0b2a39a>] kernel_init+0x13c/0x1bd
+    [<c0409142>] kernel_thread_helper+0x6/0x10
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c420 (size 16):
+  comm "swapper", pid 1, jiffies 4294680572 (age 7541.117s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04f41e6>] open_exec+0x1f/0x77
+    [<c052029c>] load_script+0x17c/0x1c4
+    [<c04f3494>] search_binary_handler+0xb8/0x226
+    [<c04f47d0>] do_execve+0x1b1/0x261
+    [<c040e807>] sys_execve+0x30/0x58
+    [<c0408c52>] ptregs_execve+0x12/0x18
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c430 (size 16):
+  comm "swapper", pid 1, jiffies 4294680572 (age 7541.117s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04f41e6>] open_exec+0x1f/0x77
+    [<c0521aaf>] load_elf_binary+0x211/0x1142
+    [<c04f3494>] search_binary_handler+0xb8/0x226
+    [<c05202c0>] load_script+0x1a0/0x1c4
+    [<c04f3494>] search_binary_handler+0xb8/0x226
+    [<c04f47d0>] do_execve+0x1b1/0x261
+    [<c040e807>] sys_execve+0x30/0x58
+    [<c0408c52>] ptregs_execve+0x12/0x18
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c450 (size 16):
+  comm "init", pid 1, jiffies 4294680573 (age 7541.117s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c460 (size 16):
+  comm "init", pid 1, jiffies 4294680573 (age 7541.117s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c470 (size 16):
+  comm "init", pid 1, jiffies 4294680573 (age 7541.120s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c480 (size 16):
+  comm "init", pid 1, jiffies 4294680573 (age 7541.120s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c490 (size 16):
+  comm "init", pid 1, jiffies 4294680573 (age 7541.120s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c4a0 (size 16):
+  comm "init", pid 1, jiffies 4294680573 (age 7541.120s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c4b0 (size 16):
+  comm "init", pid 1, jiffies 4294680574 (age 7541.119s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c4c0 (size 16):
+  comm "init", pid 1, jiffies 4294680574 (age 7541.119s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c4d0 (size 16):
+  comm "init", pid 1, jiffies 4294680574 (age 7541.123s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c4e0 (size 16):
+  comm "init", pid 1, jiffies 4294680574 (age 7541.123s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c4f0 (size 16):
+  comm "init", pid 1, jiffies 4294680574 (age 7541.123s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c500 (size 16):
+  comm "init", pid 1, jiffies 4294680574 (age 7541.123s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c510 (size 16):
+  comm "init", pid 1, jiffies 4294680574 (age 7541.123s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c520 (size 16):
+  comm "init", pid 1, jiffies 4294680575 (age 7541.122s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c530 (size 16):
+  comm "init", pid 1, jiffies 4294680575 (age 7541.125s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c540 (size 16):
+  comm "init", pid 1, jiffies 4294680575 (age 7541.125s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c550 (size 16):
+  comm "init", pid 1, jiffies 4294680575 (age 7541.125s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c560 (size 16):
+  comm "init", pid 1, jiffies 4294680575 (age 7541.125s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c570 (size 16):
+  comm "init", pid 1, jiffies 4294680575 (age 7541.125s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c440 (size 16):
+  comm "init", pid 1, jiffies 4294680579 (age 7541.121s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf555c750 (size 104):
+  comm "init", pid 1, jiffies 4294680582 (age 7541.122s)
+  hex dump (first 32 bytes):
+    dc 0d c5 f6 54 c7 55 f5 54 c7 55 f5 01 00 00 00  ....T.U.T.U.....
+    01 00 00 00 28 00 01 00 01 00 00 00 00 00 00 00  ....(...........
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c07b19ea>] sock_alloc+0x15/0x4e
+    [<c07b207d>] __sock_create+0x96/0x224
+    [<c07b2252>] sock_create+0x29/0x2e
+    [<c07b23d5>] sys_socket+0x31/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5666100 (size 32):
+  comm "init", pid 1, jiffies 4294680582 (age 7541.122s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 01 00 00 00 03 00 00 00  ................
+    28 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  (...............
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7f73>] selinux_sk_alloc_security+0x17/0x40
+    [<c05c5aef>] security_sk_alloc+0x15/0x18
+    [<c07b51d2>] sk_prot_alloc+0x6c/0xec
+    [<c07b561c>] sk_alloc+0x26/0x62
+    [<c07d8d27>] __netlink_create+0x2a/0x90
+    [<c07d8ec6>] netlink_create+0x139/0x17b
+    [<c07b2174>] __sock_create+0x18d/0x224
+    [<c07b2252>] sock_create+0x29/0x2e
+    [<c07b23d5>] sys_socket+0x31/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c580 (size 16):
+  comm "init", pid 1, jiffies 4294680582 (age 7541.122s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c07b1ac5>] sock_alloc_file+0xa2/0xf8
+    [<c07b1b31>] sock_map_fd+0x16/0x2a
+    [<c07b23ec>] sys_socket+0x48/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5666140 (size 32):
+  comm "console_init", pid 61, jiffies 4294680852 (age 7540.853s)
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4509>] __kmalloc_track_caller+0x14a/0x16e
+    [<c04c90ed>] kmemdup+0x20/0x30
+    [<c05caf08>] selinux_cred_prepare+0x18/0x2b
+    [<c05c546f>] security_prepare_creds+0x15/0x18
+    [<c045d65f>] prepare_creds+0x7a/0x8f
+    [<c045d82d>] prepare_exec_creds+0x4f/0xda
+    [<c04f3820>] prepare_bprm_creds+0x2f/0x4d
+    [<c04f46ad>] do_execve+0x8e/0x261
+    [<c040e807>] sys_execve+0x30/0x58
+    [<c0408c52>] ptregs_execve+0x12/0x18
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5f1cd80 (size 16):
+  comm "init", pid 1, jiffies 4294680854 (age 7540.851s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56db260 (size 32):
+  comm "init", pid 1, jiffies 4294680854 (age 7540.854s)
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 ff ff ff ff ff ff ff ff  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4509>] __kmalloc_track_caller+0x14a/0x16e
+    [<c04c90ed>] kmemdup+0x20/0x30
+    [<c05caf08>] selinux_cred_prepare+0x18/0x2b
+    [<c05c546f>] security_prepare_creds+0x15/0x18
+    [<c045d65f>] prepare_creds+0x7a/0x8f
+    [<c045d6dc>] copy_creds+0x68/0x16a
+    [<c043ff95>] copy_process+0x294/0xf29
+    [<c0440d61>] do_fork+0x137/0x2c9
+    [<c040e8de>] sys_clone+0x24/0x29
+    [<c0408cbd>] ptregs_clone+0x15/0x58
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5f1cd90 (size 16):
+  comm "init", pid 1, jiffies 4294680856 (age 7540.852s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5f1cda0 (size 16):
+  comm "init", pid 1, jiffies 4294680856 (age 7540.852s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56db120 (size 32):
+  comm "console_init", pid 62, jiffies 4294680856 (age 7540.852s)
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4509>] __kmalloc_track_caller+0x14a/0x16e
+    [<c04c90ed>] kmemdup+0x20/0x30
+    [<c05caf08>] selinux_cred_prepare+0x18/0x2b
+    [<c05c546f>] security_prepare_creds+0x15/0x18
+    [<c045d65f>] prepare_creds+0x7a/0x8f
+    [<c045d82d>] prepare_exec_creds+0x4f/0xda
+    [<c04f3820>] prepare_bprm_creds+0x2f/0x4d
+    [<c04f46ad>] do_execve+0x8e/0x261
+    [<c040e807>] sys_execve+0x30/0x58
+    [<c0408c52>] ptregs_execve+0x12/0x18
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56660c0 (size 32):
+  comm "init", pid 63, jiffies 4294680857 (age 7540.851s)
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4509>] __kmalloc_track_caller+0x14a/0x16e
+    [<c04c90ed>] kmemdup+0x20/0x30
+    [<c05caf08>] selinux_cred_prepare+0x18/0x2b
+    [<c05c546f>] security_prepare_creds+0x15/0x18
+    [<c045d65f>] prepare_creds+0x7a/0x8f
+    [<c045d82d>] prepare_exec_creds+0x4f/0xda
+    [<c04f3820>] prepare_bprm_creds+0x2f/0x4d
+    [<c04f46ad>] do_execve+0x8e/0x261
+    [<c040e807>] sys_execve+0x30/0x58
+    [<c0408c52>] ptregs_execve+0x12/0x18
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c640 (size 16):
+  comm "init", pid 63, jiffies 4294680857 (age 7540.855s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04f41e6>] open_exec+0x1f/0x77
+    [<c04f46df>] do_execve+0xc0/0x261
+    [<c040e807>] sys_execve+0x30/0x58
+    [<c0408c52>] ptregs_execve+0x12/0x18
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c630 (size 16):
+  comm "init", pid 63, jiffies 4294680857 (age 7540.855s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04f41e6>] open_exec+0x1f/0x77
+    [<c0521aaf>] load_elf_binary+0x211/0x1142
+    [<c04f3494>] search_binary_handler+0xb8/0x226
+    [<c04f47d0>] do_execve+0x1b1/0x261
+    [<c040e807>] sys_execve+0x30/0x58
+    [<c0408c52>] ptregs_execve+0x12/0x18
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c620 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680859 (age 7540.853s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c5f0 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680859 (age 7540.853s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c600 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680859 (age 7540.853s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c650 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680859 (age 7540.856s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c660 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680859 (age 7540.856s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c670 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680860 (age 7540.855s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c680 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680860 (age 7540.855s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c690 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680860 (age 7540.855s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c6a0 (size 16):
+  comm "plymouthd", pid 63, jiffies 4294680860 (age 7540.855s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56660e0 (size 32):
+  comm "plymouthd", pid 63, jiffies 4294680861 (age 7540.858s)
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4509>] __kmalloc_track_caller+0x14a/0x16e
+    [<c04c90ed>] kmemdup+0x20/0x30
+    [<c05caf08>] selinux_cred_prepare+0x18/0x2b
+    [<c05c546f>] security_prepare_creds+0x15/0x18
+    [<c045d65f>] prepare_creds+0x7a/0x8f
+    [<c045d6dc>] copy_creds+0x68/0x16a
+    [<c043ff95>] copy_process+0x294/0xf29
+    [<c0440d61>] do_fork+0x137/0x2c9
+    [<c040e8de>] sys_clone+0x24/0x29
+    [<c0408cbd>] ptregs_clone+0x15/0x58
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c6c0 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680863 (age 7540.856s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c0519602>] anon_inode_getfile+0xf6/0x165
+    [<c05196a7>] anon_inode_getfd+0x36/0x5f
+    [<c0519482>] sys_epoll_create1+0x11e/0x147
+    [<c05194c5>] sys_epoll_create+0x1a/0x1d
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c6d0 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680863 (age 7540.856s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c04f5493>] create_write_pipe+0x119/0x181
+    [<c04f5526>] do_pipe_flags+0x2b/0xd6
+    [<c04f55eb>] sys_pipe2+0x1a/0x53
+    [<c04f5636>] sys_pipe+0x12/0x14
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c6e0 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680863 (age 7540.856s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c04f50f9>] create_read_pipe+0x21/0x45
+    [<c04f5540>] do_pipe_flags+0x45/0xd6
+    [<c04f55eb>] sys_pipe2+0x1a/0x53
+    [<c04f5636>] sys_pipe+0x12/0x14
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c6f0 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680863 (age 7540.856s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c710 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680863 (age 7540.859s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c720 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680863 (age 7540.859s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5620208 (size 104):
+  comm "plymouthd", pid 64, jiffies 4294680864 (age 7540.858s)
+  hex dump (first 32 bytes):
+    9c 10 c5 f6 0c 02 62 f5 0c 02 62 f5 01 00 00 00  ......b...b.....
+    01 00 00 00 17 00 01 00 01 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c07b19ea>] sock_alloc+0x15/0x4e
+    [<c07b207d>] __sock_create+0x96/0x224
+    [<c07b2252>] sock_create+0x29/0x2e
+    [<c07b23d5>] sys_socket+0x31/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5666080 (size 32):
+  comm "plymouthd", pid 64, jiffies 4294680864 (age 7540.858s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 01 00 00 00 03 00 00 00  ................
+    17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7f73>] selinux_sk_alloc_security+0x17/0x40
+    [<c05c5aef>] security_sk_alloc+0x15/0x18
+    [<c07b51d2>] sk_prot_alloc+0x6c/0xec
+    [<c07b561c>] sk_alloc+0x26/0x62
+    [<c08337a5>] unix_create1+0x47/0x14c
+    [<c083390f>] unix_create+0x65/0x70
+    [<c07b2174>] __sock_create+0x18d/0x224
+    [<c07b2252>] sock_create+0x29/0x2e
+    [<c07b23d5>] sys_socket+0x31/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c730 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680864 (age 7540.858s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c07b1ac5>] sock_alloc_file+0xa2/0xf8
+    [<c07b1b31>] sock_map_fd+0x16/0x2a
+    [<c07b23ec>] sys_socket+0x48/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5f1ceb0 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680870 (age 7540.856s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5699750 (size 104):
+  comm "plymouthd", pid 64, jiffies 4294680873 (age 7540.853s)
+  hex dump (first 32 bytes):
+    68 c5 c2 f6 54 97 69 f5 54 97 69 f5 01 00 00 00  h...T.i.T.i.....
+    01 00 00 00 07 00 01 00 01 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c052bb07>] proc_pid_make_inode+0x11/0xf6
+    [<c052dfe0>] proc_pid_instantiate+0x19/0x95
+    [<c052e636>] proc_pid_lookup+0x12f/0x145
+    [<c052adcf>] proc_root_lookup+0x27/0x30
+    [<c04f6517>] do_lookup+0xda/0x14a
+    [<c04f6d1d>] link_path_walk+0x3de/0x517
+    [<c04f688c>] do_follow_link+0x193/0x246
+    [<c04f6b78>] link_path_walk+0x239/0x517
+    [<c04f6f61>] path_walk+0x55/0xb5
+unreferenced object 0xf56997b8 (size 104):
+  comm "plymouthd", pid 64, jiffies 4294680873 (age 7540.853s)
+  hex dump (first 32 bytes):
+    10 c8 c2 f6 bc 97 69 f5 bc 97 69 f5 01 00 00 00  ......i...i.....
+    01 00 00 00 07 00 01 00 01 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c052bb07>] proc_pid_make_inode+0x11/0xf6
+    [<c052e078>] proc_pident_instantiate+0x1c/0x84
+    [<c052e1e4>] proc_pident_lookup+0x6f/0x83
+    [<c052e238>] proc_tgid_base_lookup+0x14/0x16
+    [<c04f6517>] do_lookup+0xda/0x14a
+    [<c04f6b49>] link_path_walk+0x20a/0x517
+    [<c04f6f61>] path_walk+0x55/0xb5
+    [<c04f85cf>] do_path_lookup+0x26/0x74
+    [<c04f93dd>] user_path_at+0x41/0x67
+unreferenced object 0xf5699820 (size 104):
+  comm "plymouthd", pid 64, jiffies 4294680874 (age 7540.852s)
+  hex dump (first 32 bytes):
+    b8 ca c2 f6 24 98 69 f5 24 98 69 f5 01 00 00 00  ....$.i.$.i.....
+    01 00 00 00 09 00 01 00 01 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c052bb07>] proc_pid_make_inode+0x11/0xf6
+    [<c052d9b9>] proc_fd_instantiate+0x28/0xff
+    [<c052db13>] proc_lookupfd_common+0x83/0x97
+    [<c052db4d>] proc_lookupfd+0x12/0x14
+    [<c04f6517>] do_lookup+0xda/0x14a
+    [<c04f6d1d>] link_path_walk+0x3de/0x517
+    [<c04f6f61>] path_walk+0x55/0xb5
+    [<c04f85cf>] do_path_lookup+0x26/0x74
+    [<c04f93dd>] user_path_at+0x41/0x67
+unreferenced object 0xf5f1cea0 (size 16):
+  comm "plymouthd", pid 64, jiffies 4294680959 (age 7540.770s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c085eaf4>] syscall_call+0x7/0xb
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c7d0 (size 16):
+  comm "init", pid 1, jiffies 4294680962 (age 7540.768s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c04f5493>] create_write_pipe+0x119/0x181
+    [<c04f5526>] do_pipe_flags+0x2b/0xd6
+    [<c04f55eb>] sys_pipe2+0x1a/0x53
+    [<c04f5636>] sys_pipe+0x12/0x14
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c7b0 (size 16):
+  comm "init", pid 1, jiffies 4294680962 (age 7540.768s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c04f50f9>] create_read_pipe+0x21/0x45
+    [<c04f5540>] do_pipe_flags+0x45/0xd6
+    [<c04f55eb>] sys_pipe2+0x1a/0x53
+    [<c04f5636>] sys_pipe+0x12/0x14
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c7c0 (size 16):
+  comm "init", pid 1, jiffies 4294680962 (age 7540.768s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56662e0 (size 32):
+  comm "init", pid 1, jiffies 4294680962 (age 7540.768s)
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4509>] __kmalloc_track_caller+0x14a/0x16e
+    [<c04c90ed>] kmemdup+0x20/0x30
+    [<c05caf08>] selinux_cred_prepare+0x18/0x2b
+    [<c05c546f>] security_prepare_creds+0x15/0x18
+    [<c045d65f>] prepare_creds+0x7a/0x8f
+    [<c045d6dc>] copy_creds+0x68/0x16a
+    [<c043ff95>] copy_process+0x294/0xf29
+    [<c0440d61>] do_fork+0x137/0x2c9
+    [<c040e8de>] sys_clone+0x24/0x29
+    [<c0408cbd>] ptregs_clone+0x15/0x58
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5699888 (size 104):
+  comm "init", pid 70, jiffies 4294680964 (age 7540.769s)
+  hex dump (first 32 bytes):
+    9c 9b c5 f6 8c 98 69 f5 8c 98 69 f5 01 00 00 00  ......i...i.....
+    01 00 00 00 28 00 01 00 01 00 00 00 00 00 00 00  ....(...........
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c07b19ea>] sock_alloc+0x15/0x4e
+    [<c07b207d>] __sock_create+0x96/0x224
+    [<c07b2252>] sock_create+0x29/0x2e
+    [<c07b23d5>] sys_socket+0x31/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56db180 (size 32):
+  comm "init", pid 70, jiffies 4294680964 (age 7540.769s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 01 00 00 00 03 00 00 00  ................
+    28 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  (...............
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7f73>] selinux_sk_alloc_security+0x17/0x40
+    [<c05c5aef>] security_sk_alloc+0x15/0x18
+    [<c07b51d2>] sk_prot_alloc+0x6c/0xec
+    [<c07b561c>] sk_alloc+0x26/0x62
+    [<c07d8d27>] __netlink_create+0x2a/0x90
+    [<c07d8ec6>] netlink_create+0x139/0x17b
+    [<c07b2174>] __sock_create+0x18d/0x224
+    [<c07b2252>] sock_create+0x29/0x2e
+    [<c07b23d5>] sys_socket+0x31/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5f1ce70 (size 16):
+  comm "init", pid 70, jiffies 4294680964 (age 7540.769s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04effd2>] alloc_file+0x1a/0x9f
+    [<c07b1ac5>] sock_alloc_file+0xa2/0xf8
+    [<c07b1b31>] sock_map_fd+0x16/0x2a
+    [<c07b23ec>] sys_socket+0x48/0x5f
+    [<c07b31b8>] sys_socketcall+0x6d/0x1a9
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5f1ce90 (size 16):
+  comm "nash-hotplug", pid 70, jiffies 4294680964 (age 7540.769s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56998f0 (size 104):
+  comm "nash-hotplug", pid 70, jiffies 4294680967 (age 7540.770s)
+  hex dump (first 32 bytes):
+    60 cd c2 f6 f4 98 69 f5 f4 98 69 f5 01 00 00 00  `.....i...i.....
+    01 00 00 00 07 00 01 00 01 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c052bb07>] proc_pid_make_inode+0x11/0xf6
+    [<c052dfe0>] proc_pid_instantiate+0x19/0x95
+    [<c052e636>] proc_pid_lookup+0x12f/0x145
+    [<c052adcf>] proc_root_lookup+0x27/0x30
+    [<c04f6517>] do_lookup+0xda/0x14a
+    [<c04f6d1d>] link_path_walk+0x3de/0x517
+    [<c04f688c>] do_follow_link+0x193/0x246
+    [<c04f6b78>] link_path_walk+0x239/0x517
+    [<c04f876e>] do_filp_open+0xfa/0x471
+unreferenced object 0xf5699958 (size 104):
+  comm "nash-hotplug", pid 70, jiffies 4294680967 (age 7540.770s)
+  hex dump (first 32 bytes):
+    08 d0 c2 f6 5c 99 69 f5 5c 99 69 f5 01 00 00 00  ....\.i.\.i.....
+    01 00 00 00 06 00 01 00 01 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3f2f>] kmem_cache_alloc+0xe3/0x134
+    [<c05cb543>] selinux_inode_alloc_security+0x2e/0x73
+    [<c05c5e60>] security_inode_alloc+0x1f/0x3f
+    [<c0500481>] inode_init_always+0xc0/0x1eb
+    [<c05005e5>] alloc_inode+0x39/0x67
+    [<c05007c6>] new_inode+0x1c/0x62
+    [<c052bb07>] proc_pid_make_inode+0x11/0xf6
+    [<c052e078>] proc_pident_instantiate+0x1c/0x84
+    [<c052e1e4>] proc_pident_lookup+0x6f/0x83
+    [<c052e238>] proc_tgid_base_lookup+0x14/0x16
+    [<c04f6517>] do_lookup+0xda/0x14a
+    [<c04f8090>] do_last+0x196/0x529
+    [<c04f8820>] do_filp_open+0x1ac/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+unreferenced object 0xf554c740 (size 16):
+  comm "init", pid 1, jiffies 4294681216 (age 7540.521s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf501fe90 (size 16):
+  comm "init", pid 1, jiffies 4294681502 (age 7540.239s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf554c8c0 (size 16):
+  comm "init", pid 1, jiffies 4294681826 (age 7539.915s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf57cad00 (size 16):
+  comm "init", pid 1, jiffies 4294681861 (age 7539.884s)
+  hex dump (first 16 bytes):
+    01 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c05c7c7e>] kzalloc+0x10/0x12
+    [<c05c7d48>] selinux_file_alloc_security+0x2d/0x49
+    [<c05c5348>] security_file_alloc+0x14/0x16
+    [<c04eff04>] get_empty_filp+0xaa/0x15e
+    [<c04f879f>] do_filp_open+0x12b/0x471
+    [<c04ed51d>] do_sys_open+0x4f/0xe7
+    [<c04ed601>] sys_open+0x23/0x2b
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf53c0fb0 (size 16):
+  comm "modprobe", pid 1395, jiffies 4294702262 (age 7519.511s)
+  hex dump (first 16 bytes):
+    80 22 c0 fe 00 fa 23 f5 00 00 00 00 01 00 00 00  ."....#.........
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<fcb5d747>] acpi_cpufreq_cpu_init+0x91/0x58e [acpi_cpufreq]
+    [<c0797b85>] cpufreq_add_dev+0x233/0x7c2
+    [<c06b6b09>] sysdev_driver_register+0x98/0xe7
+    [<c0796dd3>] cpufreq_register_driver+0xa3/0x166
+    [<fcb720b6>] 0xfcb720b6
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf565ef00 (size 192):
+  comm "modprobe", pid 1395, jiffies 4294702267 (age 7519.506s)
+  hex dump (first 32 bytes):
+    d0 07 00 00 00 00 00 00 c0 57 01 00 00 00 00 00  .........W......
+    0a 00 00 00 00 00 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c066d1ee>] acpi_processor_register_performance+0x26b/0x3dc
+    [<fcb5d7bc>] acpi_cpufreq_cpu_init+0x106/0x58e [acpi_cpufreq]
+    [<c0797b85>] cpufreq_add_dev+0x233/0x7c2
+    [<c06b6b09>] sysdev_driver_register+0x98/0xe7
+    [<c0796dd3>] cpufreq_register_driver+0xa3/0x166
+    [<fcb720b6>] 0xfcb720b6
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf53c0fa0 (size 16):
+  comm "modprobe", pid 1395, jiffies 4294702268 (age 7519.505s)
+  hex dump (first 16 bytes):
+    80 22 e0 fe 60 bf 6d f5 00 00 00 00 01 00 00 00  ."..`.m.........
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<fcb5d747>] acpi_cpufreq_cpu_init+0x91/0x58e [acpi_cpufreq]
+    [<c0797b85>] cpufreq_add_dev+0x233/0x7c2
+    [<c06b6b09>] sysdev_driver_register+0x98/0xe7
+    [<c0796dd3>] cpufreq_register_driver+0xa3/0x166
+    [<fcb720b6>] 0xfcb720b6
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf56a3d80 (size 192):
+  comm "modprobe", pid 1395, jiffies 4294702276 (age 7519.497s)
+  hex dump (first 32 bytes):
+    d0 07 00 00 00 00 00 00 c0 57 01 00 00 00 00 00  .........W......
+    0a 00 00 00 00 00 00 00 0a 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e4679>] __kmalloc+0x14c/0x170
+    [<c066d1ee>] acpi_processor_register_performance+0x26b/0x3dc
+    [<fcb5d7bc>] acpi_cpufreq_cpu_init+0x106/0x58e [acpi_cpufreq]
+    [<c0797b85>] cpufreq_add_dev+0x233/0x7c2
+    [<c06b6b09>] sysdev_driver_register+0x98/0xe7
+    [<c0796dd3>] cpufreq_register_driver+0xa3/0x166
+    [<fcb720b6>] 0xfcb720b6
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf4a729c0 (size 8):
+  comm "insmod", pid 3971, jiffies 5273076 (age 1981.554s)
+  hex dump (first 8 bytes):
+    80 14 2b e7 40 ab 0a e6                          ..+.@...
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7e72264>] end_bio_metalog+0x2a/0x7d [lfsmdr]
+    [<f7e8a044>] 0xf7e8a044
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf099bf00 (size 256):
+  comm "rfsioctl", pid 3984, jiffies 5283062 (age 1971.568s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f b4 a2 16 f6 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 06 06 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7e7ea3e>] __func__.37015+0x1bce/0xfffffe56 [lfsmdr]
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf099bc00 (size 256):
+  comm "rfsioctl", pid 3988, jiffies 5317346 (age 1937.285s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f b4 a2 16 f6 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 0a 0a 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7e7ea3e>] __func__.37015+0x1bce/0xfffffe56 [lfsmdr]
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3974ee0 (size 8):
+  comm "insmod", pid 3993, jiffies 5351778 (age 1902.853s)
+  hex dump (first 8 bytes):
+    80 91 ce e5 00 9f cb ea                          ........
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7e90264>] 0xf7e90264
+    [<f7ea8044>] 0xf7ea8044
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3b6d500 (size 256):
+  comm "rfsioctl", pid 4004, jiffies 5354468 (age 1900.163s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 de d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 02 02 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7e9ca3e>] 0xf7e9ca3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf099b600 (size 256):
+  comm "rfsioctl", pid 4006, jiffies 5375718 (age 1878.913s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 de d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 06 06 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7e9ca3e>] 0xf7e9ca3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf2a02500 (size 256):
+  comm "rfsioctl", pid 4008, jiffies 5408009 (age 1846.636s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 de d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 0a 0a 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7e9ca3e>] 0xf7e9ca3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3974278 (size 8):
+  comm "insmod", pid 4015, jiffies 5435386 (age 1819.259s)
+  hex dump (first 8 bytes):
+    c0 10 b5 ed 00 96 92 ec                          ........
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7eae264>] 0xf7eae264
+    [<f7ec6044>] 0xf7ec6044
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf301ca00 (size 256):
+  comm "rfsioctl", pid 4027, jiffies 5442553 (age 1812.092s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 a6 16 f6 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 0a 0a 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ebaa3e>] 0xf7ebaa3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3b6d600 (size 256):
+  comm "rfsioctl", pid 4029, jiffies 5462205 (age 1792.440s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 a6 16 f6 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 0e 0e 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ebaa3e>] 0xf7ebaa3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf301cd00 (size 256):
+  comm "rfsioctl", pid 4031, jiffies 5492733 (age 1761.912s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 a6 16 f6 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 12 12 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ebaa3e>] 0xf7ebaa3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3974408 (size 8):
+  comm "insmod", pid 4037, jiffies 5536929 (age 1717.716s)
+  hex dump (first 8 bytes):
+    80 fd d7 e5 80 b7 4b ee                          ......K.
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ecc264>] 0xf7ecc264
+    [<f7ee4044>] 0xf7ee4044
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3b69f00 (size 256):
+  comm "rfsioctl", pid 4048, jiffies 5541973 (age 1712.686s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 de d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 0e 0e 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ed8a3e>] 0xf7ed8a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf4a67100 (size 256):
+  comm "rfsioctl", pid 4050, jiffies 5566772 (age 1687.887s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 de d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 12 12 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ed8a3e>] 0xf7ed8a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf301c500 (size 256):
+  comm "rfsioctl", pid 4052, jiffies 5592535 (age 1662.124s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 de d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 16 16 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ed8a3e>] 0xf7ed8a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3974f58 (size 8):
+  comm "insmod", pid 4058, jiffies 5619913 (age 1634.746s)
+  hex dump (first 8 bytes):
+    40 85 f5 ec 80 1a 95 eb                          @.......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7eea264>] 0xf7eea264
+    [<f7f08044>] 0xf7f08044
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf4a67c00 (size 256):
+  comm "rfsioctl", pid 4069, jiffies 5623818 (age 1630.841s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 e6 d5 f4 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 02 02 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ef6a3e>] 0xf7ef6a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf301ce00 (size 256):
+  comm "rfsioctl", pid 4070, jiffies 5712383 (age 1542.290s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 e6 d5 f4 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 06 06 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ef6a3e>] 0xf7ef6a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3b6d300 (size 256):
+  comm "rfsioctl", pid 4073, jiffies 5746036 (age 1508.637s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 e6 d5 f4 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 0a 0a 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7ef6a3e>] 0xf7ef6a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf39743c8 (size 8):
+  comm "insmod", pid 4078, jiffies 5787479 (age 1467.195s)
+  hex dump (first 8 bytes):
+    00 ef b2 e6 80 a4 16 ed                          ........
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7f0e264>] 0xf7f0e264
+    [<f7f26044>] 0xf7f26044
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf099b400 (size 256):
+  comm "rfsioctl", pid 4090, jiffies 5799688 (age 1454.986s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 ed d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 02 02 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7f1aa3e>] 0xf7f1aa3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3b69400 (size 256):
+  comm "rfsioctl", pid 4091, jiffies 5873549 (age 1381.125s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f f4 ed d5 f4 00 00 00 00 01 00 00 00  ................
+    01 00 00 00 06 06 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7f1aa3e>] 0xf7f1aa3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf3974938 (size 8):
+  comm "insmod", pid 4100, jiffies 5921997 (age 1332.677s)
+  hex dump (first 8 bytes):
+    80 4a 33 e9 00 10 55 e9                          .J3...U.
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7f2c264>] 0xf7f2c264
+    [<f7f44044>] 0xf7f44044
+    [<c040305b>] do_one_initcall+0x51/0x144
+    [<c0474631>] sys_init_module+0x7c/0x19e
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf2a02700 (size 256):
+  comm "rfsioctl", pid 4111, jiffies 5927602 (age 1327.086s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 a6 16 f6 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 1a 1a 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7f38a3e>] 0xf7f38a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xf5d85800 (size 256):
+  comm "rfsioctl", pid 4112, jiffies 5947779 (age 1306.909s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 a6 16 f6 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 1e 1e 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7f38a3e>] 0xf7f38a3e
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff
+unreferenced object 0xeedeee00 (size 256):
+  comm "rfsioctl", pid 4981, jiffies 6155972 (age 1098.720s)
+  hex dump (first 32 bytes):
+    00 00 c0 0f 74 f5 d5 f4 00 00 00 00 01 00 00 00  ....t...........
+    01 00 00 00 02 02 00 00 ad 4e ad de ff ff ff ff  .........N......
+  backtrace:
+    [<c08447d3>] kmemleak_alloc+0x4f/0x88
+    [<c04e3db2>] kmem_cache_alloc_notrace+0xe5/0xf1
+    [<f7f74a8a>] 0xf7f74a8a
+    [<c05efb8c>] __blkdev_driver_ioctl+0x30/0x88
+    [<c05f059b>] blkdev_ioctl+0x9a8/0x9e5
+    [<c0510e49>] block_ioctl+0x35/0x3d
+    [<c04fa558>] vfs_ioctl+0x27/0x8c
+    [<c04faaf1>] do_vfs_ioctl+0x481/0x4b1
+    [<c04fab66>] sys_ioctl+0x45/0x5f
+    [<c0408b5f>] sysenter_do_call+0x12/0x38
+    [<ffffffff>] 0xffffffff

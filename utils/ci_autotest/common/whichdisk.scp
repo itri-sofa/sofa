@@ -1,0 +1,4 @@
+disk_num=$1
+disk=(sdb sdc sdd sde sdf sdg sdh sdi
+      sdj sdk sdl sdm sdn sdo sdp sdq)
+echo ${disk[$disk_num]}

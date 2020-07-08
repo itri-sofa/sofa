@@ -1,0 +1,155 @@
+#########################
+#     bash script       #
+#########################
+
+#!/bin/bash
+
+#########################
+#  parameters check     #
+#########################
+
+parameters_input=2
+HelpMsg="[Help] parameters: device(sdb) [output file: default /dev/null]"
+ErrMsg2="[Error] There are too many parameters" 	
+
+[ "$#" -lt 1 ] && echo $HelpMsg && exit 0
+[ "$#" -gt $parameters_input ] && echo $ErrMsg2 && echo $HelpMsg && exit 0
+
+#[ "$#" -eq 1 ] && output_file=/dev/null || output_file=$2
+output_file=/dev/null
+
+#####################################
+#  function : trim_last_segment     #
+#####################################
+
+trim_last_segment()
+{
+	lsn=$2
+	cn_sectors=$3
+	total_sectors=$4
+	
+	cn_last_sec=$(($cn_sectors%32768))
+	if (($cn_last_sec==0))
+	then
+		cn_segment=$(($cn_sectors/32768))
+		if (($cn_segment==1))
+		then 
+			#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:32768 --please-destroy-my-drive /dev/$1" 
+			checkFail "hdparm --trim-sector-ranges $lsn:32768 --please-destroy-my-drive /dev/$1" >> $output_file
+			percentage=$(($(($(($lsn+32768))*100))/$total_sectors))
+    		echo -ne "\033[1k\r $1 trim percentage: $(($lsn+32768)) sectors  $percentage%" 
+		elif (($cn_segment==2))
+		then
+			#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 --please-destroy-my-drive /dev/$1" 
+			checkFail "hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 --please-destroy-my-drive /dev/$1" >> $output_file
+			percentage=$(($(($(($lsn+65536))*100))/$total_sectors))
+    		echo -ne "\033[1k\r $1 trim percentage: $(($lsn+65536)) sectors  $percentage%" 
+		else  #### $cn_segment==3  ###
+			#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):32768 --please-destroy-my-drive /dev/$1" 
+			checkFail "hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):32768 --please-destroy-my-drive /dev/$1" >> $output_file
+			percentage=$(($(($(($lsn+98304))*100))/$total_sectors))
+    		echo -ne "\033[1k\r $1 trim percentage: $(($lsn+98304)) sectors  $percentage%" 
+		fi
+	else
+		cn_segment=$(($(($cn_sectors/32768))+1))
+		if (($cn_segment==1))
+		then
+			#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:$cn_last_sec --please-destroy-my-drive /dev/$1" 
+			checkFail "hdparm --trim-sector-ranges $lsn:$cn_last_sec --please-destroy-my-drive /dev/$1" >> $output_file
+			percentage=$(($(($(($lsn+$cn_last_sec))*100))/$total_sectors))
+    		echo -ne "\033[1k\r $1 trim percentage: $(($lsn+$cn_last_sec)) sectors  $percentage%"
+		elif (($cn_segment==2))	
+		then
+			#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):$cn_last_sec --please-destroy-my-drive /dev/$1" 
+			checkFail "hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):$cn_last_sec --please-destroy-my-drive /dev/$1" >> $output_file
+			percentage=$(($(($(($(($lsn+32768))+$cn_last_sec))*100))/$total_sectors))
+    		echo -ne "\033[1k\r $1 trim percentage: $(($(($lsn+32768))+$cn_last_sec)) sectors  $percentage%"
+		elif (($cn_segment==3))
+		then
+			#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):$cn_last_sec --please-destroy-my-drive /dev/$1" 
+			checkFail "hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):$cn_last_sec --please-destroy-my-drive /dev/$1" >> $output_file
+			percentage=$(($(($(($(($lsn+65536))+$cn_last_sec))*100))/$total_sectors))
+    		echo -ne "\033[1k\r $1 trim percentage: $(($(($lsn+65536))+$cn_last_sec)) sectors  $percentage%"
+		else  #### $cn_segment==4  ###
+			#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):32768 $(($lsn+98304)):$cn_last_sec --please-destroy-my-drive /dev/$1" 
+			checkFail "hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):32768 $(($lsn+98304)):$cn_last_sec --please-destroy-my-drive /dev/$1" >> $output_file
+			percentage=$(($(($(($(($lsn+98304))+$cn_last_sec))*100))/$total_sectors))
+    		echo -ne "\033[1k\r $1 trim percentage: $(($(($lsn+98304))+$cn_last_sec)) sectors  $percentage%" 
+		fi
+	fi     	
+}
+
+checkFail()
+{
+	$1
+	if(($?))
+	then
+		echo $1 " fail!" >> $output_file
+   		exit
+	else
+		echo $1 " ok!" >> $output_file
+	fi
+}
+
+#####################################
+#   testing :  full trim            #
+#####################################
+
+echo "##############################################" 
+echo "# testing : full trim                        #" 
+echo "##############################################" 
+
+echo "usage: trim [disk_name]"
+echo "example: trim sdb"
+echo "trimming $1 start"
+
+lsn=0
+fdisk -l /dev/$1 > tmp$1 2> /dev/null
+cn_sectors=`awk '{ if ($1=="Disk" && ($4=="GB," || $4=="GiB,")){print $5/512;}}' tmp$1`
+[ -z $cn_sectors ] && exit
+
+cn_page=$(($cn_sectors/8))
+stop_percent=100
+if (($2)) 
+then
+	stop_percent=$2
+	echo "set stop percent to $2"
+fi
+
+jump=4096   ## 32768 sectors/8
+round=$(($cn_page/$jump))
+
+echo "start trim: total $cn_sectors sectors"
+
+total_sectors=$cn_sectors
+
+while(( $cn_sectors>0 ))
+do    
+    if (($cn_sectors < 131072))
+    then    	
+    	trim_last_segment $1 $lsn $cn_sectors $total_sectors
+    else		
+    	#echo -ne "\033[1k\r hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):32768 $(($lsn+98304)):32768 --please-destroy-my-drive /dev/$1"       	
+    	checkFail "hdparm --trim-sector-ranges $lsn:32768 $(($lsn+32768)):32768 $(($lsn+65536)):32768 $(($lsn+98304)):32768 --please-destroy-my-drive /dev/$1" >> $output_file
+    	percentage=$(($(($(($lsn+131072))*100))/$total_sectors))
+    	echo -ne "\033[1k\r $1 trim percentage: $(($lsn+131072)) sectors  $percentage%"     	
+		if (($percentage >= $stop_percent))
+		then
+			break
+		fi
+    fi 
+    
+    lsn=$(($lsn+131072))
+    cn_sectors=$(($cn_sectors-131072))    
+done
+
+echo ""
+if (( $percentage == $stop_percent ))
+then
+	echo "The function of full trim is OK!!" 
+else
+	echo "The function of full trim is ERROR!!" 
+fi
+
+rm -rf tmp$1
+

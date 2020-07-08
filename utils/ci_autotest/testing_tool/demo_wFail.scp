@@ -1,0 +1,29 @@
+cp utS2CE utest
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+
+
+rm a.log
+page_per_seu=2048
+
+################## write fail  ####################
+page=(1 2 4 8 9 14 16 18 21 25 27 31)
+page_Fail=(0 0 0 0 0 0 0 0 0 0 0 0)
+pick_seu=(26 56 86 98 290 680 1000 1450 1580 2008)
+
+for(( i=0 ;i<${#pick_seu[*]}; i=i+1 ))
+#for((i=0;i<10;i=i+1 )) 
+do
+	dmesg -c > /dev/null
+	j=$(( $RANDOM%${#page[*]} ))
+	lpn=$(( $(( ${pick_seu[$i]} * $page_per_seu)) + $(( ${page_Fail[$j]}*16 )) ))
+	echo ${page_Fail[$j]}
+	lbn=$(( $lpn*8 ))	
+
+	./utest w $lpn ${page[$j]}
+read
+	./utest dynpagequery $lbn ${page[$j]}
+
+	echo "Write Fail report for SEU ${pick_seu[$i]} in page ${page_Fail[$j]}" >> a.log
+	dmesg | awk -v v1=$lpn -v v2=${page[$j]} -f chkbad.awk >> a.log  
+done 
+

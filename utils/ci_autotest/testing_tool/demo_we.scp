@@ -1,0 +1,31 @@
+cp utS2CE utest
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+
+rm a.log
+pageseu=2048
+BLKseu=32
+################ Write after Erase #############################
+#len=(1 2 4 8 10 12 15 16 18 20 25 28 31 )
+for (( i=0; i<1000; i=i+1 )) 
+do 
+	lpn=$(( $i*$pageseu ))
+	./utest erase $i $BLKseu
+	./utest r $lpn $BLKseu
+	con1=$?   # should be 1 empty
+#	page=$(( $RANDOM % $BLKseu + 1 ))
+	page=$BLKseu
+	./utest w $lpn $page 
+	./utest r $lpn $page 
+	con2=$?	  # should be 2 sequential
+	lastlpn=$(( $lpn+$page ))
+	./utest r $lastlpn 1 
+	con3=$?
+	if (( $con1==1 && $con2==2 && $con3==1 ))
+		then echo "Write super EU after erase $i in length $page OK" >> a.log
+	else
+		echo "Write super EU after erase $i in length $page Fail" >> a.log
+	fi
+done
+
+
+

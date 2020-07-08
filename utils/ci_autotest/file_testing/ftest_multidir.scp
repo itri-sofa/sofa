@@ -1,0 +1,138 @@
+#!/bin/bash
+#Description:
+#    purpose: test create multiple directory on virtual device of sofa
+#    procedures: 
+#        step 1: format file system
+#        step 2: write files
+#        step 3: call ftest to verify content
+#input parameters:
+#        1st: target raw device
+#        2nd: how many sub directory to hold files
+#
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+cnt_dirs=20
+test_mpoint=/mnt/lfsm_ci_autotest_0123456789
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+    cnt_dirs=20
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    cnt_dirs=$2
+else
+    target_dev=lfsm
+    cnt_dirs=20
+fi
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev and num dirs = $cnt_dirs"
+
+#########################
+#   start testing       #
+#########################
+
+[ -f $test_log_file ] && rm -f $test_log_file
+
+log_msg "$test_scfn [INFO] format device /dev/$target_dev"
+execute "mke2fs -F -b 4096 /dev/$target_dev"
+
+log_msg "$test_scfn [INFO] create mount point and mount"
+[ -d $test_mpoint ] && rm -rf $test_mpoint
+execute "mkdir $test_mpoint"
+execute "mount /dev/$target_dev $test_mpoint"
+
+for((i=0;i<$cnt_dirs;i++))
+do
+    mkdir ${test_mpoint}/file$i
+    if [ $? -ne 0 ]; then
+        "$test_scfn: [ERROR] fail create directory ${test_mpoint}/file$i"
+        umount $test_mpoint
+        exit 1
+    fi
+done
+
+fnum=100
+fsize=500
+log_msg "$test_scfn: [INFO] test with $fnum files with file size $fsize"
+
+########################
+#    write files       #
+########################
+
+log_msg "$test_scfn: [INFO] start write data to file"
+
+for((i=0;i<$cnt_dirs;i++))
+do
+    seed=$((123+$i))
+    execute_bg "$PATH_TEST_TOOL/ftest ${test_mpoint}/file$i $fnum $fsize 100 $seed"
+done
+
+#TODO: we should check whether all thread done
+sleep 10
+
+sync
+log_msg "$test_scfn: [INFO] clear page cache: 3 > /proc/sys/vm/drop_caches"
+echo 3 > /proc/sys/vm/drop_caches
+sync
+sleep 5
+
+########################
+#   read files back    #
+########################
+log_msg "$test_scfn: [INFO] start test data from file"
+
+for((i=0;i<$cnt_dirs;i++))
+do
+    [ -f $PATH_LOG/r_ftest$i.log ] && rm -f $PATH_LOG/r_ftest$i.log
+    seed=$((123+$i))
+    execute_bg_result2file "$PATH_TEST_TOOL/ftest ${test_mpoint}/file$i $fnum $fsize 0 $seed" $PATH_LOG/r_ftest$i.log
+done
+
+#########################
+#    check result       #
+#########################
+sleep 20
+sum=0
+for((i=0;i<$cnt_dirs;i++))
+do
+    cor_num=`awk 'BEGIN{count=0;}{if ($1=="Force"){if ($4=="errfile=0"){count ++;}}}END{print count}' $PATH_LOG/r_ftest$i.log`
+    echo "$i.correct=$cor_num"
+    echo "$i.correct=$cor_num" >> $test_log_file
+    sum=$(($sum+$cor_num))
+done
+
+log_msg "$test_scfn: [INFO] umount ${test_mpoint}"
+execute "umount ${test_mpoint}"
+sleep 2
+
+execute "rm -rf $test_mpoint"
+
+echo "sum=$sum" >> $PATH_LOG/RESULT.log
+if (($sum==$cnt_dirs))
+then
+    log_msg "$test_scfn: [INFO] test result ok"
+    #TODO notify the caller or jenkins server that test is ok
+else
+    exit 1
+fi
+

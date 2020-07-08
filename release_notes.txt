@@ -1,0 +1,9 @@
+Our SOFA starts with 1.0.0 version and follows the rule of Linux Kernel release.
+Each version is characterized by three number, separated by periods like 
+major.minor.patch_release. If the second number is even, it indicates a stable
+version like 1.0, 1.2; otherwise, it indicates an unstable version like 
+1.1, 1.3. The last number is used for patch releases.
+
+==========================
+SOFA 1.0.00 release notes
+==========================

@@ -1,0 +1,29 @@
+pagesize=2048
+BLKseu=32
+size=(16 16 16 16 16)
+rm a.log
+################### Mark Bad Block ################################
+dmesg -c > /dev/null
+./utest staticquery 0 0
+dmesg | awk -f stabad.awk > bad1.log
+
+for (( i=100; i<2046; i=i+100 ))  
+do
+	seu=$i
+	j=$(( $RANDOM%$BLKseu+1 ))
+	#len=${size[$j]}
+	len=$j
+	./utest markbad $seu $len
+	dmesg -c > /dev/null
+	./utest staticquery 0 0
+	dmesg | awk -f stabad.awk > bad2.log 
+	diff -f bad1.log bad2.log > tmp.log
+	awk -v v1=$seu -v v2=$len -f chksbad.awk tmp.log >> a.log
+	cp -f bad2.log bad1.log
+done
+
+
+
+
+
+

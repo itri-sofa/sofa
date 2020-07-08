@@ -1,0 +1,54 @@
+cp utS2CE utest
+
+rm a.log
+pageseu=2048
+BLKseu=32
+################ Read for addres #############################
+seu=(170 224 374 380 462 693 715 759 829 887 980 1048 1118 1153 1172 1226 1231 1232 1233 1286 1366 1602 1638 1848 1850 1945 2004 2020)
+for((i=0; i<${#seu[*]}; i=i+1))
+#for (( i=1000; i<2046; i=i+1 )) 
+do 
+	lpn=$((${seu[$i]}*$pageseu))
+#	lpn=$(($i*$pageseu))
+
+	for ((j=0; j<$BLKseu; j=j+1))
+	do 
+		./utest r $lpn 1
+		cond=$?
+		echo $cond
+		if (( $cond==2 ))
+			then echo "Read super EU ${seu[$i]} page $j OK" >> a.log
+		else
+			echo "Read super EU ${seu[$i]} page $j Fail" >> a.log
+		fi
+		echo $lpn
+		lpn=$(($lpn+1))
+	done
+	#====================================
+#	./utest r $lpn $BLKseu
+#	if (( $?==2 ))
+#		then echo "Read super EU $i OK" >> a.log
+#	else
+#		echo "Read super EU $i Fail" >> a.log
+#	fi
+	#====================================
+done
+echo "===Read for address done==="
+read
+################ Read for size #############################
+seu=1000
+#len=(1 2 4 8 16 32)
+lpn=$(( $seu*$pageseu ))
+#for (( i=0; i<${#len[*]}; i=i+1 )) 
+for (( i=1; i<=32; i=i+1 )) 
+do 
+	page=$i 
+	#page=${len[i]}
+	./utest r $lpn $page
+	if (( $?==2 ))
+		then echo "Read super EU $seu in $page OK" >> a.log
+	elif (( $?!=2 ))
+		then echo "Read super EU $seu in $page Fail" >> a.log
+	fi
+done
+echo "===Read for size done==="

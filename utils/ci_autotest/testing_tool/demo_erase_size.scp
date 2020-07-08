@@ -1,0 +1,49 @@
+cp utS2CE utest
+
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004)  
+
+rm a.log
+
+pageseu=2048
+BLKseu=32
+ 
+#################### Erase for size ###########################
+pick_seu=2044  
+#page_size=(1 2 8 16 24 32)
+
+lpn=$(( $pick_seu*$pageseu ))
+
+fill_len=64
+./utest erase $pick_seu $BLKseu
+./utest sw $pick_seu $fill_len 
+
+#for(( i=0; i<${#page_size[*]}; i=i+1 ))
+for(( i=1; i<=32; i=i+1 ))
+do
+	#page=${page_size[$i]}
+	page=$i
+	./utest erase $pick_seu $page
+	
+	./utest cmp $lpn $page $lpn
+	cond1=$?	# should be 1 for empty
+	
+	lpn_last=$(( $lpn+$page ))
+	page_last=$(( $BLKseu-$page ))
+	if (( $page_last==0 ))
+	then 
+		cond2=2
+	else
+		./utest cmp $lpn_last $page_last $lpn_last
+		cond2=$?	# should be 2 for sequential
+	fi
+
+	
+	if (( $cond1==1 && $cond2==2 ))
+		then echo "Erase $pick_seu for $page block OK" >> a.log
+	else
+		echo "Erase $pick_seu for $page block Fail" >> a.log
+	fi 
+
+done
+
+

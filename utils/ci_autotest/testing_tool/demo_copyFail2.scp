@@ -1,0 +1,43 @@
+cp utS2CE utest
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+
+
+rm a.log
+page_per_seu=2048
+
+################## copy for write Fail ####################
+len=(1 2 4 8 16)
+page_Fail=(0 1 8 60 120)
+pick_seu=(26 56 86 98 290 680 1000 1450 1580 2008)  # fake seu make in firmware
+
+
+for((i=0;i<${#pick_esu[*]};i=i+1 )) 
+do
+	dmesg -c > /dev/null
+	source=$(( ${pick_seu[$i]}+2 ))
+	j=$(( $RANDOM%5 ))
+	lpn = $(( ${pick_seu[$i]} * $page_per_seu))     # + $(( ${page_Fail[$j]}*16 )) ))
+	lbn = $(( $lpn*8 ))
+
+	./utest sw $source ${len[$j]}
+#	sleep 1
+	./utest copy $source ${len[$j]} ${pick_seu[$i]}
+#	sleep 1
+	./utest dynblkquery $lbn ${len[$j]}
+
+	echo "Copy Fail report (write fail) for SEU ${pick_seu[$i]} in page ${page_Fail[$j]}" >> a.log
+	dmesg | awk -v v1=$lpn -v v2=${len[$j]} -f chkbad.awk >> a.log  
+
+	lpn=$(($lpn+${page_Fail[$j]}-1))
+	dlpn=$((${pick_seu[$i]} * $page_per_seu + ${page_Fail[$j]}-1))
+	./utest cmp $lpn $len $dlpn
+	con1=$?
+ 
+	if (( $con1==2 ))
+		then echo "Copy seu $seu to $dest in length ${page_Fail[$j]} OK" >> a.log
+	else
+		echo "Copy seu $seu to $dest in LBA ${page_Fail[$j]} fail" >> a.log
+	fi
+	
+done 
+

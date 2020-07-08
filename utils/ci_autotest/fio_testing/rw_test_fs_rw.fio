@@ -1,0 +1,46 @@
+##### The following is randw.fio #######
+[global]
+direct=1
+#size=1536G   # 1.5T
+#size=1229G  # 1.2T
+#size=1024G  # 1T
+size=1G  # 1T
+#size=200G
+#io_size=40G
+
+ioengine=libaio
+lockfile=exclusive
+rw=randrw
+rwmixread=50
+rwmixwrite=50
+iodepth=1024
+verify=crc32
+do_verify=1
+#disable_clat=1
+#disable_slat=1
+disable_bw_measurement=1
+group_reporting=1
+bs=4K
+#bs=1M
+##randrepeat=0
+#norandommap
+#runtime=10800
+#runtime=3600
+#runtime=7200
+#runtime=10
+#runtime=18000
+#ramp_time=2
+userspace_reap
+#iodepth_batch=64
+#iodepth_low=8
+#iodepth_batch_complete=64
+#time_based
+exitall
+
+
+#
+[write1]
+numjobs=1
+#
+#
+#

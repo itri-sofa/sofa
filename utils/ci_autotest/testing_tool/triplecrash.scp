@@ -1,0 +1,33 @@
+rm a.log
+dmesg -c > /dev/null
+./utest w 10*2048 4 1
+./utest w 10*2048 4 0
+./utest r 10*2048 4
+./utest dynpagequery 80*2048 4
+dmesg | awk -v v1=20483 -f chkbad.awk >> a.log
+
+dmesg -c > /dev/null
+./utest w 20*2048 4 1
+./utest w 20*2048 4 0
+./utest r 20*2048 4
+./utest dynpagequery 160*2048 4
+dmesg | awk -v v1=40963 -f chkbad.awk >> a.log
+
+dmesg -c > /dev/null
+./utest w 30*2048 4 1
+./utest w 30*2048 4 0
+./utest r 30*2048 4
+./utest dynpagequery 240*2048 4
+dmesg | awk -v v1=61483 -f chkbad.awk >> a.log
+
+dmesg -c > /dev/null
+./utest w 40*2048 4 1
+./utest w 40*2048 4 0
+./utest r 40*2048 4
+./utest dynpagequery 320*2048 4
+dmesg | awk -v v1=81923 -f chkbad.awk >> a.log
+
+
+
+
+

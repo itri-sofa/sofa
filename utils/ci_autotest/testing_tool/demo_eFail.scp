@@ -1,0 +1,19 @@
+cp utS2CE utest
+
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+
+pageseu=2048
+BLKseu=32
+rm a.log
+################ Erase Bad Block #########################
+
+for((i=0;i<${#bad_SEU[*]};i=i+1))
+do
+	dmesg -c > dev/null 
+	lpn=$((${bad_SEU[$i]}*$pageseu))
+	lbn=$(($lpn*8))
+	./utest erase ${bad_SEU[$i]} $BLKseu
+	
+	./utest dynblkquery $lbn $BLKseu
+	dmesg | awk -v v1=$lpn -v v2=$BLKseu -f chkbad.awk >> a.log 
+done

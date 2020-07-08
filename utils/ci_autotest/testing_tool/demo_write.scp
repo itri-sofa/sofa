@@ -1,0 +1,53 @@
+cp utS2CE utest
+
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004) 
+
+rm write.log
+pageseu=2048
+
+############## Write for size ####################
+pick_seu=(0 5 10 50 100 500 900 1200 1500 1700 1800 1900 2000 2010 2020 2040 \
+2 7 12 52 102 502 902 1202 1502 1702 1802 1902 2002 2012 2022 2042 )
+#page=(31 28 25 22 18 16 14 12 8 6 4 2 1)
+
+for (( i=0; i<${#pick_seu[*]}; i=i+1 ))
+do
+	lpn=$(( $pageseu * ${pick_seu[$i]} ))	
+#	len=${page[$i]}
+	len=$(( $i+1 ))
+	./utest w $lpn $len
+	./utest r $lpn $len
+
+	if (( $?==2 ))
+		then echo "Write super EU ${pick_seu[$i]} in $len pages OK" >> write.log
+	else
+		echo "Write super EU ${pick_seu[$i]} in $len pages Fail" >> write.log
+	fi
+done	 
+echo "=====End of write for different size ====="	 
+read
+##################################################
+pick_seu=2045
+#page_size=(1 2 4 8 10 12 14 16 22 26 30 31)
+lpn_org=$(( $pageseu * $pick_seu ))
+lpn=$lpn_org
+len=0
+
+#for (( i=0; i<${#page_size[*]}; i=i+1 ))
+for (( i=1; i<=32; i=i+1 ))
+do
+	page=$i #{page_size[$i]}
+	len=$(( $len + $page ))
+	./utest w $lpn $page
+	
+	./utest cmp $lpn $page $lpn
+	con=$?
+	lpn=$(( $lpn_org + $len ))
+	
+	if (( $con==2 ))
+		then echo "Write $pick_seu from LPN $lpn_org to $lpn in length $page is OK" >> write.log
+	else
+		echo "Write $pick_seu from LPN $lpn_org to $lpn in length $page is Fail" >> write.log 
+	fi
+
+done

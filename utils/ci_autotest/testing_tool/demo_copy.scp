@@ -1,0 +1,73 @@
+cp utS2CE utest
+rm a.log
+pagesize=2048  
+BLKseu=32
+while((0))
+do
+############################################################
+for (( i=1075; i<2046; i=i+50 ))
+do
+	dest=$(( $i+2 ))
+	seu=$i
+	len=$BLKseu
+	./utest sw $seu $len
+	./utest copy $seu $len $dest
+	lpn=$(( $seu*$pagesize ))
+	dlpn=$(( $dest*$pagesize ))
+	./utest cmp $lpn $len $dlpn
+	con1=$?
+#	dlpn_last=$(( $len + $dlpn ))
+#	./utest r $dlpn_last 1 
+#	con2=$?
+	if(( $con1==2 ))
+		then echo "Copy seu $seu to $dest in length $len OK" >> a.log
+	else
+		echo "Copy seu $seu to $dest in length $len fail" >> a.log
+	fi
+done
+echo "End of copy for address"
+read
+############################################################
+done
+seu=3
+dest=2040
+len=0 
+./utest sw $seu 256
+size=(1 2 4 8 9 12 15 16 19 25 29 31)
+
+lpn=$(( $seu * $pagesize ))
+lpn2=$(( $dest * $pagesize ))
+
+#for(( i=0; i<${#size[*]}; i=i+1 ))
+for(( i=1; i<=32; i=i+1 ))
+do
+#	len=${size[$i]}
+	len=$i
+	
+	./utest copylpn $lpn $len $lpn2
+
+	./utest cmp $lpn $len $lpn2
+	con1=$?      # should = 2
+		
+	lpn2=$(( $lpn2 + $len ))
+	lpn=$(( $lpn + $len ))
+
+	./utest r $lpn2 1
+	con2=$?      # should = 1 empty 	
+#	echo "$con1 $con2"
+#	read
+	if (( $con1==2 && $con2==1 ))
+		then echo "Copy LPN $lpn to $lpn2 in page $len is OK" >> a.log
+	else
+		echo "Copy SEU LPN $lpn to $lpn2 in page $len is fail" >> a.log	
+	fi
+
+done
+
+echo " End of copy for contineus length different"
+
+
+
+
+
+ 

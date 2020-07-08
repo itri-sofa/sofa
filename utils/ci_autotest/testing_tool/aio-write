@@ -1,0 +1,19 @@
+[global]
+ioengine=libaio
+buffered=0
+bs=4k
+iodepth=1
+runtime=100
+directory=/dev
+filename=sdc
+direct=0
+#verify=meta
+
+[seq-write]
+offset=21208k 
+rw=write
+do_verify=1
+zonesize=0 #32768
+zoneskip=0 #4161536
+
+ 

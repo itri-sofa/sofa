@@ -1,0 +1,77 @@
+#!/bin/bash
+#Description:
+#    purpose: test the performance of reading and writeing data
+#    procedures: first, test write performance and using the perfrbsw command in the utest, perifrbsw is batch write the random data which in a range and will calculate the iops; 
+#                second, test read performance via the perfrbsr command, and finally log the result.
+#input parameters: 
+#    1st: target raw device
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+else
+    target_dev=lfsm
+fi
+
+log_msg "$test_scfn: [INFO] start testing with target dev = $target_dev"
+
+#########################
+#  set other parameters #
+#########################
+
+log_msg "$test_scfn: [INFO] test_tool = $test_tool"
+
+#########################
+#   start testing       #
+#########################
+
+err_ret=0
+
+[ -f $test_log_file ] && rm -f $test_log_file
+
+export utest_seed48=12345
+log_msg "$test_scfn: [INFO] performance write test..."
+$test_tool /dev/$target_dev perfrbsw 20480 204800 0 >> $test_log_file
+if [ $? -ne 0 ]; then
+    log_msg "$test_scfn: [ERROR] write test error, please check it"
+    err_ret=1
+    break
+fi
+
+
+log_msg "$test_scfn: [INFO] performance read test..."
+$test_tool /dev/$target_dev perfrbsr 20480 204800 0 >> $test_log_file
+if [ $? -ne 0 ]; then
+    log_msg "$test_scfn: [ERROR] read test error, please check it"
+    err_ret=1
+fi
+
+
+if [ "$err_ret" == 0 ]
+then
+    log_msg "$test_scfn: [INFO] test result ok"
+    #TODO notify the caller or jenkins server that test is ok
+else
+    exit $err_ret
+fi

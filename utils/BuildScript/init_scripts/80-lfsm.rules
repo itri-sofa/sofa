@@ -1,0 +1,2 @@
+KERNEL=="sd*[!0-9]", SUBSYSTEM=="block", ACTION=="add", ENV{DEVTYPE}=="disk",RUN+="/usr/sofa/bin/notify_lfsm_scandev.sh"
+KERNEL=="sd*[!0-9]", SUBSYSTEM=="block", ACTION=="remove", ENV{DEVTYPE}=="disk", RUN+="/usr/sofa/bin/notify_lfsm_scandev.sh"

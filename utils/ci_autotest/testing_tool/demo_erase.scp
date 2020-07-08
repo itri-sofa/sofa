@@ -1,0 +1,25 @@
+cp utS2CE utest
+
+bad_SEU=(1286 887 1172 1366 715 1945 1848 2004)   
+
+pageseu=2048
+BLKseu=32
+offset=2
+rm tmp
+rm a.log
+################ Erase for addres #############################
+for (( i=0; i<1000; i=i+1 )) 
+do 
+	./utest erase $i $BLKseu 
+done
+read
+for (( i=0; i<1000; i=i+1 )) 
+do
+	lpn=$(( $i*$pageseu ))
+	./utest cmp $lpn $BLKseu $lpn
+	if (( $?==1 ))
+		then echo "Erase super EU $i OK" >> a.log
+	elif (( $?!=1 ))
+		then echo "Erase super EU $i Fail" >> a.log
+	fi
+done

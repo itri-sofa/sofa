@@ -1,0 +1,95 @@
+#!/bin/bash
+#Description:
+#    purpose: page-based testing, random write data to target raw device
+#    procedures: use the function randsw in utest to random write 10 times total_dev_page data, and the length of the write io is 32 pages.
+#input parameters:
+#    1st: target raw device
+#    2nd: amount of data to write (in page unit)
+
+
+#########################
+#     include files     #
+#########################
+
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+
+#########################
+#   setup testing para  #
+#########################
+
+target_dev=lfsm
+amount_data=0
+
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    amount_data=$gDiskSize
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    amount_data=$2
+else
+    target_dev=lfsm
+    get_disk_size $target_dev
+    amount_data=$gDiskSize
+fi
+
+#if amount_data >= disksize, amount_data = disksize
+if [ $amount_data -ge $gDiskSize ] ; then
+    amount_data=$gDiskSize
+fi
+
+log_msg "$test_scfn: [INFO] start testing with target dev = $target_dev, and amount data = $amount_data"
+
+#########################
+#  set other parameters #
+#########################
+
+allpage=$amount_data
+round=$(($allpage*10))
+
+log_msg "$test_scfn: [INFO] allpage = $allpage, round = $round, test_tool = $test_tool"
+
+#########################
+#   start testing       #
+#########################
+
+err_ret=0
+
+[ -f $test_log_file ] && rm -f $test_log_file
+
+for ((i=1;i<=1;i=i+1))
+do
+	seed=$(($1010*$i))
+	export utest_seed48=$(($seed+53))
+
+	page=1	
+    log_msg "$test_scfn: [INFO] start round $i test" >> $test_log_file 
+    log_msg "$test_scfn: [INFO]i=$i TEST: Page Random W Seauential R len=$page"
+	$test_tool /dev/$target_dev randsw $allpage $round 0 $page >> $test_log_file
+    if [ $? -ne 0 ]; then
+        log_msg "$test_scfn: [ERROR] test error, please check it"
+        err_ret=1
+        break
+    fi
+done
+
+if [ "$err_ret" == 0 ]
+then
+    log_msg "$test_scfn: [INFO] test result ok"
+    #TODO notify the caller or jenkins server that test is ok
+else
+    exit $err_ret
+fi
+
+#NOTE: if necessary, we should clean all intermediate resources

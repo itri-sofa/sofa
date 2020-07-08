@@ -1,0 +1,292 @@
+/*
+Copyright (c) 2015-2025 Industrial Technology Research Institute.
+
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+*/
+/* 
+    Created on : 2015/7/1, ?U?? 01:52:08
+    Author     : 531206
+*/
+
+.statusMonitor_IconMonitorFrame{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 140px;
+    margin-left: 0px;
+}
+
+.statusMonitor_Icon{
+    position: relative;
+    float: left;
+    width: 90px;
+    height: 90px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.statusMonitor_Title{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold; 
+}
+
+.statusMonitor_StatusText{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.statusMonitor_StatusText_OK{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: #009900;
+}
+.statusMonitor_StatusText_Degraded{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: #B7950D;
+}
+.statusMonitor_StatusText_Close{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: #547D94;
+}
+.statusMonitor_StatusText_Failed{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: #9e005d;
+}
+.statusMonitor_StatusText_Init{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: #055893;
+
+}
+
+.statusMonitor_Icon_Spin{
+    -webkit-animation: spin 4s infinite linear;
+    -moz-animation: spin 4s infinite linear;
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+.statusMonitor_PieBackground{
+    position: relative;
+    float: left;
+    width: 90px;
+    height: 90px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 40px;
+    margin-right: 40px;
+    border-radius: 45px;
+    background-color: white;
+    border: solid 1px lightgray;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+.statusMonitor_Pie{
+    position: relative;
+    float: left;
+    width: 94px;
+    height: 94px;
+    margin-top: -1px;
+    margin-left: -1px;
+    border-radius: 45px;
+    background-color: black;
+}
+
+.statusMonitor_Pie_StatusText{
+    position: relative;
+    float: left;
+    width: 170px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.statusMonitor_BarMonitor_Frame{
+    position: relative;
+    float: left;
+    width: 260px;
+    height: 40px;
+}
+.statusMonitor_BarMonitor_Title{
+    position: relative;
+    float: left;
+    width: 238px;
+    height: 20px;
+    margin-left: 10px;
+    text-align: right;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: bold;
+}
+.statusMonitor_BarMonitor_BarFrame{
+    position: relative;
+    float: left;
+    width: 240px;
+    height: 15px;
+    margin-left: 10px;
+    margin-top: 5px;
+    border-radius: 2px;
+    background-color: lightgray;
+}
+.statusMonitor_BarMonitor_BarElement{
+    position: relative;
+    float: left;
+    width: 0px;
+    height: 15px;
+    border-radius: 2px 0 0 2px;
+    background-color: #006CCF;
+}
+.statusMonitor_ArrayMonitor_Frame{
+    position: relative;
+    width: 68px;
+    height: 40px;
+    display: inline-block;
+}
+.statusMonitor_ArrayMonitor_Icon{
+    position: relative;
+    float: left;
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+.statusMonitor_ArrayMonitor_Text{
+    position: relative;
+    float: left;
+    height: 40px;
+    width: 28px;
+    line-height: 40px;
+}
+.statusMonitor_SingleMonitor_Frame{
+    position: relative;
+    width: auto;
+    height: 40px;
+    display: inline-block;
+    margin-left: -8px;
+}
+.statusMonitor_SingleMonitor_Text{
+    position: relative;
+    float: left;
+    height: 40px;
+    width: auto;
+    line-height: 40px;
+}
+
+.statusMonitor_TwoLineMonitor_Frame{
+    position: relative;
+    width: 100%;
+    height: 80px;
+    display: inline-block;
+}
+.statusMonitor_TwoLineMonitor_Text{
+    position: relative;
+    float: left;
+    height: 40px;
+    width: auto;
+    line-height: 40px;
+}
+.statusMonitor_IconWarning{
+    position: absolute;
+    top: 5px; 
+    right: 20px;
+    width: 28px;
+    height: 28px;
+    z-index: 9999;
+    animation: blinker 2s linear infinite;
+}
+
+.statusMonitor_BigRound_ValueFrame{
+    position: relative;
+    float: left;
+    height: 50px;
+    width: 90px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 32px;
+    margin-top: 10px;
+    color: #006CCF;
+}
+
+.statusMonitor_BigRound_UnitFrame{
+    position: relative;
+    float: left;
+    height: 24px;
+    width: 90px;
+    line-height: 24px;
+    text-align: center;
+    font-size: 18px;
+    color: gray;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.6; }
+}

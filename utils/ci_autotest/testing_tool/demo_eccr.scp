@@ -1,0 +1,101 @@
+cp utS2CE utest
+
+seu=500
+lpn=$(($seu*2048))
+len=(4 9 22)
+
+bad=$(( $lpn+${len[0]} ))
+./utest w $bad 1 1
+./utest w $bad 1 0
+read
+
+while((0))
+do
+#======================================
+
+./utest r $lpn 8
+echo " case 0: read $lpn in length 8 should have error response"
+read
+
+./utest r $lpn 4
+echo " case 1: read $lpn in length 4 should have no error response"
+read
+
+lpntmp=$(($lpn+7))
+./utest r $lpntmp 5
+echo " case 2: read $lpntmp in length 5 should have no error response"
+read
+
+lpntmp=$(($lpn+16))
+./utest r $lpntmp 16
+echo " case 3: read $lpntmp in length 16 should have no error response"
+read
+
+lpntmp=$(($lpn+4))
+./utest r $lpntmp 24
+echo " case 4: read $lpntmp in length 24 should have error response"
+read
+#=============================================
+done
+#########################################
+bad=$(( $lpn+${len[1]} ))
+./utest w $bad 2 1
+./utest w $bad 2 0
+read
+
+while((0))
+do
+#======================================
+
+./utest r $lpn 8
+echo " case 0: read $lpn in length 8 should have error response"
+read
+
+./utest r $lpn 4
+echo " case 1: read $lpn in length 4 should have no error response"
+read
+
+lpntmp=$(($lpn+7))
+./utest r $lpntmp 5
+echo " case 2: read $lpntmp in length 5 should have error response"
+read
+
+lpntmp=$(($lpn+16))
+./utest r $lpntmp 16
+echo " case 3: read $lpntmp in length 16 should have no error response"
+read
+
+lpntmp=$(($lpn+4))
+./utest r $lpntmp 24
+echo " case 4: read $lpntmp in length 24 should have error response"
+read
+#======================================
+done
+############################################
+bad=$(( $lpn+${len[2]} ))
+./utest w $bad 5 1
+./utest w $bad 5 0
+read
+
+./utest r $lpn 8|less
+echo " case 0: read $lpn in length 8 should have error response"
+read
+
+./utest r $lpn 4|less
+echo " case 1: read $lpn in length 4 should have no error response"
+read
+
+lpntmp=$(($lpn+7))
+./utest r $lpntmp 5|less
+echo " case 2: read $lpntmp in length 5 should have error response"
+read
+
+lpntmp=$(($lpn+16))
+./utest r $lpntmp 16|less
+echo " case 3: read $lpntmp in length 16 should have error response"
+read
+
+lpntmp=$(($lpn+4))
+./utest r $lpntmp 24|less
+echo " case 4: read $lpntmp in length 24 should have error response"
+read

@@ -1,0 +1,117 @@
+#!/bin/bash
+#Description:
+#    purpose: redundancy hotswap fail disk testing, read data from target raw device random
+#    procedures: using tool read data from target device with 1 fail disk, and enable all spare disk
+#input parameters: 
+#    1st: target raw device
+#    2nd: amount of data to read (in page unit)
+
+#########################
+#     include files     #
+#########################
+source ../common/config_test_env.sh
+source ../common/common_func.sh
+source ../common/common_global_var.sh
+
+check_sofa_service
+retval=$?
+if [ "$retval" == 0 ]
+then
+    log_msg "$test_scfn: [ERROR] sofa service not running, please start it."
+    exit 1
+fi
+[ -f "$test_log_file" ] && rm -f "$test_log_file"
+
+lfsm_inst_disk_num=$(grep -c all_ready /proc/lfsm/hotswap)
+
+#########################
+#   start testing       #
+#########################
+
+
+#########################
+#   set parameters      #
+#########################
+target_dev=lfsm
+amount_data=0
+start_addr=8192
+get_disks_Num
+mul_disk_num=$gDisksNum
+
+get_disk_size $target_dev
+if [ $# -eq 1 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    amount_data=$gDiskSize
+elif [ $# -eq 2 ] ; then
+    target_dev=$1
+    get_disk_size $target_dev
+    amount_data=$2
+else
+    get_disk_size $target_dev
+    amount_data=$gDiskSize
+fi
+
+range=$((amount_data-start_addr))
+
+if [ $range -ge $gDiskSize ] ; then
+	range=$gDiskSize
+	amount_data=$((range-start_addr))  
+fi
+
+round=$((range/10))
+
+log_msg "$test_scfn: [INFO] start testing with target dev=$target_dev lfsm_inst_disk_num = $lfsm_inst_disk_num and amount data = $amount_data range= $range round= $round startAddr= $start_addr"
+
+################################
+#   write and check data       #
+################################
+tmp_file=$(echo "$test_log_file"|cut -f 1 -d'.')
+
+for((i=0;i<mul_disk_num;i++))
+do
+	[ -f "$tmp_file"_W_$i.log ] && rm -f "$tmp_file"_W_$i.log
+	[ -f "$tmp_file"_R_$i.log ] && rm -f "$tmp_file"_R_$i.log
+		
+	export utest_seed48=$((123+i))
+	$test_tool /dev/$target_dev randsw $range $round $start_addr  >> "$tmp_file"_W_$i.log
+    sync
+    log_msg "$test_scfn: [INFO] remove disk ${gDisksMap[$i]}"
+    unplug_disk "${gDisksMap[$i]}"
+    host=$?
+	$test_tool /dev/$target_dev randsr $range $round $start_addr  >> "$tmp_file"_R_$i.log
+
+	cor_num=$(awk -f "../common/check_correct_num.awk" "$tmp_file"_R_$i.log)
+	err=$((round-cor_num))
+	log_msg "num_of_correct=$cor_num num_of_err=$err"
+	if((err==0))
+	then
+		log_msg "i=$i check data ok!!"
+	else
+		break
+	fi
+	
+    log_msg "$test_scfn: [INFO] plug disk ${gDisksMap[$i]} scsi host $host"
+    plug_disk $host
+    wait_rebuild_finish
+
+	cn_valid_disk=$(grep -c all_ready /proc/lfsm/hotswap)
+	while((cn_valid_disk<lfsm_inst_disk_num))
+	do
+		cn_valid_disk=$(grep -c all_ready /proc/lfsm/hotswap)
+		echo "valid  $cn_valid_disk  inst $lfsm_inst_disk_num"
+		sleep 1;
+	done
+	
+done
+
+#########################
+#   printk result       #
+#########################
+
+if ((err==0))
+then
+	log_msg "$test_scfn is OK!!"
+else
+	log_msg "data is not correct!!(Error=$err)"
+fi
