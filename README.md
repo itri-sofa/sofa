@@ -253,4 +253,3 @@ The advanced features includes
 Organization: Industrial Technology Research Institute \
 Contact person: Vicki Chu \
 Email: vicki.chu@itri.org.tw \
-Phone: + (886）921918175 
