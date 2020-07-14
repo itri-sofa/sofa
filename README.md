@@ -252,4 +252,4 @@ The advanced features includes
 
 Organization: Industrial Technology Research Institute \
 Contact person: Vicki Chu \
-Email: vicki.chu@itri.org.tw \
+Email: vicki.chu@itri.org.tw 
