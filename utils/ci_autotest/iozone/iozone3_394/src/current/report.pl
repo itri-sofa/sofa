@@ -1,31 +1,29 @@
 #!/usr/bin/perl
-##
-## Copyright (c) 2015-2020 Industrial Technology Research Institute.
-##
-## Licensed to the Apache Software Foundation (ASF) under one
-## or more contributor license agreements.  See the NOTICE file
-## distributed with this work for additional information
-## regarding copyright ownership.  The ASF licenses this file
-## to you under the Apache License, Version 2.0 (the
-## "License"); you may not use this file except in compliance
-## with the License.  You may obtain a copy of the License at
-##
-##    http://www.apache.org/licenses/LICENSE-2.0
-##
-## Unless required by applicable law or agreed to in writing,
-## software distributed under the License is distributed on an
-## "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-## KIND, either express or implied.  See the License for the
-## specific language governing permissions and limitations
-## under the License.
-##
-##
-##
-##
-##
-##
-##  
-##
+#
+# arguments: one of more report files
+#
+# Christian Mautner <christian * mautner . ca>, 2005-10-31
+#
+# This script is based loosely on the Generate_Graph set
+# of scripts that come with iozone, but is a complete re-write
+#
+# The main reason to write this was the need to compare the behaviour of
+# two or more different setups, for tuning filesystems or 
+# comparing different pieces of hardware.
+#
+# This script is in the public domain, too short and too trivial
+# to deserve a copyright.
+#
+# Simply run iozone like, for example, ./iozone -a -g 4G > config1.out (if your machine has 4GB)
+# and then run perl report.pl config1.out
+# or get another report from another box into config2.out and run
+# perl report.pl config1.out config2.out
+# the look in the report_* directory for .png
+#
+# If you don't like png or the graphic size, search for "set terminal" in this file and put whatever gnuplot
+# terminal you want. Note I've also noticed that gnuplot switched the set terminal png syntax
+# a while back, you might need "set terminal png small size 900,700"
+#
 
 
 @Reports=@ARGV;

@@ -1,31 +1,97 @@
 
 
-/*
- * Copyright (c) 2015-2020 Industrial Technology Research Institute.
+/* 
+ * Library for Posix async read operations with hints.
+ * Author: Don Capps
+ * Company: Iozone
+ * Date: 4/24/1998
  *
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * Two models are supported.  First model is a replacement for read() where the async
+ * operations are performed and the requested data is bcopy()-ed back into the users 
+ * buffer. The second model is a new version of read() where the caller does not 
+ * supply the address of the buffer but instead is returned an address to the
+ * location of the data. The second model eliminates a bcopy from the path.
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * To use model #1:
+ * 1. Call async_init(&pointer_on_stack,fd,direct_flag);
+ *	The fd is the file descriptor for the async operations.
+ *	The direct_flag sets VX_DIRECT 
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * 2. Call async_read(gc, fd, ubuffer, offset, size, stride, max, depth)
+ *    	Where:
+ *	gc ............	is the pointer on the stack
+ *	fd ............	is the file descriptor
+ *	ubuffer .......	is the address of the user buffer.
+ *	offset ........	is the offset in the file to begin reading
+ *	size ..........	is the size of the transfer.
+ *	stride ........	is the distance, in size units, to space the async reads.
+ *	max ...........	is the max size of the file to be read.
+ *	depth .........	is the number of async operations to perform.
  *
+ * 3. Call end_async(gc) when finished.
+ *	Where:
+ *	gc ............ is the pointer on the stack.
  *
+ * To use model #2:
+ * 1. Call async_init(&pointer_on_stack,fd,direct_flag);
+ *	The fd is the file descriptor for the async operations.
+ *	The direct_flag sets VX_DIRECT 
+ * 2. Call async_read(gc, fd, &ubuffer, offset, size, stride, max, depth)
+ *    	Where:
+ *	gc ............	is the pointer on the stack
+ *	fd ............	is the file descriptor
+ *	ubuffer .......	is the address of a pointer that will be filled in 
+ *                      by the async library.
+ *	offset ........	is the offset in the file to begin reading
+ *	size ..........	is the size of the transfer.
+ *	stride ........	is the distance, in size units, to space the async reads.
+ *	max ...........	is the max size of the file to be read.
+ *	depth .........	is the number of async operations to perform.
  *
+ * 3. Call async_release(gc) when finished with the data that was returned.
+ *    This allows the async library to reuse the memory that was filled in
+ *    and returned to the user.
  *
+ * 4. Call end_async(gc) when finished.
+ *	Where:
+ *	gc ............ is the pointer on the stack.
  *
+ * To use model #1: (WRITES)
+ * 1. Call async_init(&pointer_on_stack,fd,direct_flag);
+ *	The fd is the file descriptor for the async operations.
  *
- *  
+ * 2. Call async_write(gc, fd, ubuffer, size, offset, depth)
+ *    	Where:
+ *	gc ............	is the pointer on the stack
+ *	fd ............	is the file descriptor
+ *	ubuffer .......	is the address of the user buffer.
+ *	size ..........	is the size of the transfer.
+ *	offset ........	is the offset in the file to begin reading
+ *	depth .........	is the number of async operations to perform.
+ *
+ * 4. Call end_async(gc) when finished.
+ *	Where:
+ *	gc ............ is the pointer on the stack.
+ *
+ * Notes:
+ *	The intended use is to replace calls to read() with calls to
+ *	async_read() and allow the user to make suggestions on 
+ *	what kind of async read-ahead would be nice to have.
+ *	The first transfer requested is guarenteed to be complete
+ *	before returning to the caller. The async operations will
+ *	be started and will also be guarenteed to have completed
+ *	if the next call specifies its first request to be one
+ *	that was previously performed with an async operation.
+ *	
+ *	The async_read_no_copy() function allows the async operations
+ *	to return the data to the user and not have to perform 
+ *	a bcopy of the data back into the user specified buffer 
+ *	location. This model is faster but assumes that the user
+ *	application has been modified to work with this model.
+ *
+ * 	The async_write() is intended to enhance the performance of 
+ *	initial writes to a file. This is the slowest case in the write
+ *	path as it must perform meta-data allocations and wait.
  */
 
 #include <sys/types.h>

@@ -1,29 +1,51 @@
 /*
- * Copyright (c) 2015-2020 Industrial Technology Research Institute.
+ * Author: Don Capps
+ * 3/13/2006
  *
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ *       Author: Don Capps (capps@iozone.org)
+ *               7417 Crenshaw
+ *               Plano, TX 75025
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *  Copyright 2006, 2007, 2008, 2009   Don Capps.
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ *  License to freely use and distribute this software is hereby granted 
+ *  by the author, subject to the condition that this copyright notice 
+ *  remains intact.  The author retains the exclusive right to publish 
+ *  derivative works based on this work, including, but not limited to,
+ *  revised versions of this work",
  *
  *
+  fileop [-f X ]|[-l # -u #] [-s Y] [-e] [-b] [-w] [-d <dir>] [-t] [-v] [-h]
+       -f #      Force factor. X^3 files will be created and removed.
+       -l #      Lower limit on the value of the Force factor.
+       -u #      Upper limit on the value of the Force factor.
+       -s #      Optional. Sets filesize for the create/write. May use suffix 'K' or 'M'.
+       -e        Excel importable format.
+       -b        Output best case.
+       -w        Output worst case.
+       -d <dir>  Specify starting directory.
+       -U <dir>  Mount point to remount between tests.
+       -t        Verbose output option.
+       -v        Version information.
+       -h        Help text.
  *
+ * X is a force factor. The total number of files will
+ *   be X * X * X   ( X ^ 3 )
+ *   The structure of the file tree is:
+ *   X number of Level 1 directories, with X number of
+ *   level 2 directories, with X number of files in each
+ *   of the level 2 directories.
  *
+ *   Example:  fileop 2
  *
+ *           dir_1                        dir_2
+ *          /     \                      /     \
+ *    sdir_1       sdir_2          sdir_1       sdir_2
+ *    /     \     /     \          /     \      /     \
+ * file_1 file_2 file_1 file_2   file_1 file_2 file_1 file_2
  *
- *  
+ * Each file will be created, and then 1 byte is written to the file.
+ *
  */
 
 #include <sys/types.h>
