@@ -226,6 +226,12 @@ The configuration file is named [sofa_config.xml](conf/sofa_config.xml), and it 
 # Installation Guide for SOFA Web UI
 There is a Web UI for users to monitor SOFA health and do some configuration changes. To build and run this Web UI, please see [src_miscComp/sofa_monitor/README.md](src_miscComp/sofa_monitor/README.md).
 
+# License
+SOFA is released under the Apache-2.0 or GPL-2.0 license.
+
+External source codes: \
+IOzone: [license](http://www.iozone.org/docs/Iozone_License.txt), jQuery: MIT license, jquery-ui: dual licensed under the MIT and GPL licenses, custom.css: Apache 2.0 license, moment.js: MIT license, Chart.js: MIT license
+
 # Community
 * SOFA main channel \
 To get help or provide any feedback, the main channel is the [SOFA mailing list](https://groups.google.com/forum/#!forum/itri-sofa). \
